@@ -20,8 +20,5 @@ namespace PMISBLayer.Repositories
         {
             return _context.Phases.ToList();
         }
-
-       
-
     }
 }

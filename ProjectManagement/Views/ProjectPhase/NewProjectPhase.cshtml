@@ -6,17 +6,39 @@
         $("#StartDate").datepicker();
         $("#EndDate").datepicker();
     });
+    function getPhases(projectid) {
+        $("#phaseSelect").empty();
+        $.ajax({
+            url: "/ProjectPhase/GetPhasessbyProjectId",
+            data: { projectId: projectid.value },
+            contentType: "application/json",
+            success: function (phases) {
+
+                for (var phase of phases) {
+                    debugger;
+                    $('#phaseSelect').append($('<option>', {
+                        value: phase.id,
+                        text: phase.name
+                    }));
+                }
+            },
+            error: function () {
+                alert("something went wrong")
+            }
+        });
+    }
 </script>
 
 <form asp-controller="ProjectPhase" asp-action="CreateProjectPhase" method="post">
     <div>
         <label>Choose Project Name:</label>
-        <select asp-for="ProjectId" class="form-control">
+        <select onchange="getPhases(this);" asp-for="ProjectId" class="form-control">
             <option value="none" selected disabled hidden>Select An option</option>
             @{
                 foreach (var project in (List<Project>)ViewBag.projects)
                 {
                     <option value="@project.Id">@project.Name</option>
+                    
                 }
             }
         </select>
@@ -24,29 +46,20 @@
     </div>
     <br />
     <label>Choose project phase:</label>
-    <select asp-for="PhaseId" class="form-control">
+    <select id="phaseSelect" asp-for="PhaseId" class="form-control">
         <option value="none" selected disabled hidden>Select An option</option>
-        @{
-            foreach (var phase in (List<Phase>)ViewBag.phases)
-            {
-                <option value="@phase.Id">@phase.Name</option>
-            }
-        }
+        <!--get phases from api when select a project-->
     </select>
     <span asp-validation-for="PhaseId" style="color: red;"></span>
     <div class="form-group">
         <label>Enter Start Date:</label>
         <input id="StartDate" name="StartDate" class="form-control">
         <span asp-validation-for="StartDate" style="color: red;"></span>
-        <span style="color: red;">@ViewBag.startNull</span>
-        <span style="color: red;">@ViewBag.starterror</span>
-
     </div>
     <div class="form-group">
         <label>Enter End Date:</label>
         <input type="text" id="EndDate" name="EndDate" class="form-control">
         <span asp-validation-for="EndDate" style="color: red;"></span>
-        <span style="color: red;">@ViewBag.enderror</span>
     </div>
         <br />
         <button type="submit" class="btn btn-success">Create</button>

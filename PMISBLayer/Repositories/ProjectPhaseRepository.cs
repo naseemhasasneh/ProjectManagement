@@ -51,6 +51,13 @@ namespace PMISBLayer.Repositories
                 .Include(pp=>pp.Phase)
                 .ToList();
         }
+        public List<ProjectPhase> GetProjectPhasesByP(int projectId)
+        {
+            return _context.ProjectPhases
+                .Include(pp => pp.Phase)
+                .Where(p => p.ProjectId==projectId)
+                .ToList();
+        }
 
         public void UpdateProjectPhase(ProjectPhase updatedProjectPhase)
         {

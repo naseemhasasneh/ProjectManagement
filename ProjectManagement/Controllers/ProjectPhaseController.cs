@@ -40,6 +40,19 @@ namespace ProjectManagement.Controllers
             }
           
         }
+        public JsonResult GetPhasessbyProjectId(int projectId)
+        {
+            var AllPhases = _phaseRepo.GetAllPhases();
+            var projectPhases = _projectPhaseRepo.GetProjectPhasesByP(projectId);
+            foreach (var pp in projectPhases)
+            {
+                if (AllPhases.Select(x => x.Id).Contains(pp.PhaseId))
+                {
+                    AllPhases.Remove(pp.Phase);
+                }
+            }
+            return new JsonResult(AllPhases);
+        }
 
         public IActionResult NewProjectPhase(CreateProjectPhaseDto projectPhase)
         {
@@ -47,7 +60,16 @@ namespace ProjectManagement.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.projects = _projectRepo.GetManagerProjects(userId);
-                ViewBag.phases = _phaseRepo.GetAllPhases();
+                var AllPhases = _phaseRepo.GetAllPhases();
+                var projectPhases = _projectPhaseRepo.GetProjectPhasesByP(19);
+                foreach(var pp in projectPhases)
+                {
+                    if (AllPhases.Select(x => x.Id).Contains(pp.PhaseId))
+                    {
+                        AllPhases.Remove(pp.Phase);
+                    }
+                }
+                //ViewBag.phases = AllPhases;
                 return View();
             }
             catch(Exception ex)
