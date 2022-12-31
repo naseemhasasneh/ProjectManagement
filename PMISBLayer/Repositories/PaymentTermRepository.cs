@@ -64,7 +64,12 @@ namespace PMISBLayer.Repositories
         public List<PaymentTerm> GetPaymentTermsByPId(int projectId)
         {
                 var sql = $"exec GetPaymnets '{projectId}'";
-                return _context.PaymentTerms.FromSqlRaw(sql).ToList();
+                var paymnets= _context.PaymentTerms.FromSqlRaw(sql).ToList();
+                foreach(var p in paymnets)
+            {
+                p.Deliverable = _context.Deliverables.Find(p.DeliverableId);
+            };
+            return paymnets;
             //return _context.PaymentTerms
             //    //.Include(p=>p.InvoicePaymentTerms)
             //    .Include(p => p.Deliverable)

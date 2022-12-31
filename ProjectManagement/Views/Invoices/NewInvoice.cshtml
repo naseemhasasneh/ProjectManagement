@@ -14,10 +14,9 @@
 
                 for (var payment of payments) {
                     debugger;
-                    //payment.invoicePaymentTerms;
                         $('#paymentSelect').append($('<option>', {
                             value: payment.id,
-                            text: payment.name
+                            text: payment.deliverable.name + "-" + payment.name
                         }));
                 }
             },
