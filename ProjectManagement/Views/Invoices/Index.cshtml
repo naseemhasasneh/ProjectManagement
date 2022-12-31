@@ -1,0 +1,37 @@
+﻿@using PMISBLayer.Entities
+@model List<Invoice>
+
+<a class="btn btn-primary" asp-controller="Invoices" asp-action="NewInvoice">Create New Invoice</a>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Invoice Id</th>
+            <th>Invoice Name</th>
+            <th>Invoice Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+
+            foreach (var invoice in Model)
+            {
+                var invoiceTotal = 0.0;
+                foreach (var invoicePayment in invoice.InvoicePaymentTerms)
+                {
+
+                    invoiceTotal += invoicePayment.PaymentTerm.Amount;
+                }
+                <tr>
+                    <td>@invoice.Id</td>
+                    <td>@invoice.Title</td>
+                    <td>@invoiceTotal</td>
+                    <td><a class="btn btn-secondary" asp-controller="Invoices" asp-action="EditInvoice" asp-route-invoiceId="@invoice.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-controller="Invoices" asp-action="DeleteInvoice" asp-route-invoiceId="@invoice.Id">Delete</a></td>
+                    <td><a class="btn btn-info" asp-controller="Invoices" asp-action="ViewInvoice" asp-route-invoiceId="@invoice.Id">View Invoice</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

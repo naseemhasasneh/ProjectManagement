@@ -1,0 +1,34 @@
+﻿@using PMISBLayer.Entities
+@model Project
+
+<a class="btn btn-primary" asp-controller="Deliverable" asp-action="NewDeliverable" asp-route-projectId="@Model.Id" >Create Deliverable</a>
+
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Deliverable Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>phase Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var deliverable in (List<Deliverable>)ViewBag.deliverables)
+            {
+                <tr>
+                    <td>@deliverable.Name</td>
+                    <td>@deliverable.StartDate</td>
+                    <td>@deliverable.EndDate</td>
+                    <td>@deliverable.ProjectPhase.Phase.Name</td>
+                    <td><a class="btn btn-info" asp-controller="Deliverable" asp-action="EditDeliverable" asp-route-deliverableId="@deliverable.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-controller="Deliverable" asp-action="DeleteDeliverable" asp-route-deliverableId="@deliverable.Id"  asp-route-projectId="@Model.Id">Delete</a></td>
+                    <td><a class="btn btn-info" asp-controller="PaymentTerm" asp-action="Index" asp-route-deliverableId="@deliverable.Id" >Payment Terms</a></td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>

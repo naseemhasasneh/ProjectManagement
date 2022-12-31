@@ -1,0 +1,64 @@
+﻿@using PMISBLayer.Entities
+@model Domain.Dtos.CreateInvoiceDto
+<script type="text/javascript">
+  $( function() {
+      $("#Date").datepicker();
+  });
+    function getPayment(projectid) {
+        $("#paymentSelect").empty();
+        $.ajax({
+            url: "/Invoices/GetPaymentsbyProjectId",
+            data: { projectId:projectid.value},
+            contentType: "application/json",
+            success: function (payments) {
+
+                for (var payment of payments) {
+                    debugger;
+                    //payment.invoicePaymentTerms;
+                        $('#paymentSelect').append($('<option>', {
+                            value: payment.id,
+                            text: payment.name
+                        }));
+                }
+            },
+            error: function () {
+                alert("something went wrong")
+            }
+        });
+    }
+</script>
+
+<form asp-controller="Invoices" asp-action="CreateInvoice" method="post">
+    <div class="form-group">
+        <label>Enter Invoice Name:</label>
+        <input asp-for="Title" type="text" class="form-control">
+        <span asp-validation-for="Title" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter Invoice Date:</label>
+        <input id="Date" name="Date" class="form-control">
+        <span asp-validation-for="Date" style="color: red;"></span>
+    </div>
+    <div>
+        <label>Choose Project Name:</label>
+        <select onchange="getPayment(this);" name="ProjectId" class="form-control">
+            <option value="none" selected disabled hidden>Select An option</option>
+            @{
+                foreach (var project in ViewBag.projects)
+                {
+                    <option value="@project.Id">@project.Name</option>
+                }
+            }
+
+        </select>
+    </div>
+    <div>
+        <label>Choose payment Terms:</label>
+        <select name="PaymentTermIds" id="paymentSelect" multiple class="form-control">
+            <option value="none" selected disabled hidden>Select An Option</option>
+            <!--get payment terms options from api-->
+        </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Create</button>
+</form>

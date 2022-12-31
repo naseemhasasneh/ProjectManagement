@@ -1,0 +1,53 @@
+﻿@using PMISBLayer.Entities
+@model ProjectPhase
+
+<script>
+    $(function(){
+        $("#StartDate").datepicker();
+        $("#EndDate").datepicker();
+    });
+</script>
+
+<form asp-controller="ProjectPhase" asp-action="CreateProjectPhase" method="post">
+    <div>
+        <label>Choose Project Name:</label>
+        <select asp-for="ProjectId" class="form-control">
+            <option value="none" selected disabled hidden>Select An option</option>
+            @{
+                foreach (var project in (List<Project>)ViewBag.projects)
+                {
+                    <option value="@project.Id">@project.Name</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="ProjectId" style="color: red;"></span>
+    </div>
+    <br />
+    <label>Choose project phase:</label>
+    <select asp-for="PhaseId" class="form-control">
+        <option value="none" selected disabled hidden>Select An option</option>
+        @{
+            foreach (var phase in (List<Phase>)ViewBag.phases)
+            {
+                <option value="@phase.Id">@phase.Name</option>
+            }
+        }
+    </select>
+    <span asp-validation-for="PhaseId" style="color: red;"></span>
+    <div class="form-group">
+        <label>Enter Start Date:</label>
+        <input id="StartDate" name="StartDate" class="form-control">
+        <span asp-validation-for="StartDate" style="color: red;"></span>
+        <span style="color: red;">@ViewBag.startNull</span>
+        <span style="color: red;">@ViewBag.starterror</span>
+
+    </div>
+    <div class="form-group">
+        <label>Enter End Date:</label>
+        <input type="text" id="EndDate" name="EndDate" class="form-control">
+        <span asp-validation-for="EndDate" style="color: red;"></span>
+        <span style="color: red;">@ViewBag.enderror</span>
+    </div>
+        <br />
+        <button type="submit" class="btn btn-success">Create</button>
+</form>

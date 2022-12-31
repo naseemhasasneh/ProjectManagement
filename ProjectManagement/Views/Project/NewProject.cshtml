@@ -1,0 +1,66 @@
+﻿@using PMISBLayer.Entities
+@model Domain.Dtos.CreateProjectDto
+ 
+<script>
+  $( function() {
+      $("#StartDate").datepicker();
+      $("#EndDate").datepicker();
+  } );
+</script>
+
+<form asp-controller="Project" asp-action="CreateProject" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Enter Project Name:</label>
+        <input asp-for="Name" type="text" class="form-control">
+        <span asp-validation-for="Name" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter project Amount:</label>
+        <input asp-for="ContractAmount" type="number" class="form-control">
+        <span asp-validation-for="ContractAmount" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter Start Date:</label>
+        <input id="StartDate" name="StartDate" class="form-control">
+        <span asp-validation-for="StartDate" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter End Date:</label>
+        <input id="EndDate" name="EndDate" class="form-control">
+        <span asp-validation-for="EndDate" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Upload Contract:</label>
+        <input name="ContractFile" type="file" class="form-control">
+        <span asp-validation-for="ContractFile" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label>Choose Project Type:</label>
+        <select asp-for="ProjectTypeId" class="form-control">
+            <option value="none" selected disabled hidden>Select An option</option>
+            @{
+                foreach (var projectType in (List<ProjectType>)ViewBag.projectTypes)
+                {
+                    <option value="@projectType.Id">@projectType.Name</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="ProjectTypeId" style="color: red;"></span>
+    </div>
+    <div>
+        <label>Choose project status:</label>
+        <select asp-for="ProjectStatusId" class="form-control">
+            <option value="none" selected disabled hidden>Select An Option</option>
+            @{
+                foreach (var projectStatus in (List<ProjectStatus>)ViewBag.projectStatus)
+                {
+                    <option value="@projectStatus.Id">@projectStatus.Status</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="ProjectStatusId" style="color: red;"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Create</button>
+</form>

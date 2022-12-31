@@ -1,0 +1,27 @@
+﻿@using PMISBLayer.Entities
+@model List<Deliverable>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Deliverable Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>project Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var deliverable in Model)
+            {
+                <tr>
+                    <td>@deliverable.Name</td>
+                    <td>@deliverable.StartDate</td>
+                    <td>@deliverable.EndDate</td>
+                    <td>@deliverable.ProjectPhase.Project.Name</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

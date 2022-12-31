@@ -1,0 +1,71 @@
+﻿@model PMISBLayer.Entities.Invoice
+
+<script>
+  $( function() {
+      $("#Date").datepicker();
+  });
+    function getPayment(projectid) {
+        $.ajax({
+            url: "/Invoices/GetPaymentsbyProjectId",
+            data: { projectId:projectid.value},
+            contentType: "application/json",
+            success: function (payments) {
+
+                for (var payment of payments) {
+                    debugger;
+                    $('#paymentSelect').append($('<option>', {
+                        value: payment.id,
+                        text: payment.name
+                        
+                    }));
+                }
+            },
+            error: function () {
+                alert("something went wrong")
+            }
+        });
+        $("#paymentSelect").empty();
+    }
+</script>
+
+<form asp-controller="Invoices" asp-action="UpdateInvoice" method="post">
+    <div class="form-group">
+        <label>Enter Invoice Name:</label>
+        <input asp-for="Title" type="text" value="@Model.Title" class="form-control">
+        <span asp-validation-for="Title" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter Invoice Date:</label>
+        <input id="Date" name="Date" value="@Model.Date" class="form-control">
+        <span asp-validation-for="Date"  style="color: red;"></span>
+    </div>
+    <div>
+        <label>Choose Project Name:</label>
+        <select onchange="getPayment(this);" name="ProjectId" class="form-control">
+            @{
+                foreach (var project in ViewBag.projects)
+                {
+                    if (Model.InvoicePaymentTerms.Select(Ip => Ip.PaymentTerm.Deliverable.ProjectPhase.Project.Id).ToList().Contains(project.Id))
+                    {
+                        <option selected value="@project.Id">@project.Name</option>
+
+                    }
+                    else
+                    {
+                        <option value="@project.Id">@project.Name</option>
+                    }
+
+                }
+            }
+
+        </select>
+    </div>
+    <div>
+        <label>Choose payment Terms:</label>
+        <select name="PaymentTermIds" id="paymentSelect" multiple class="form-control">
+            <!--get payment terms options from api-->
+        </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Create</button>
+</form>

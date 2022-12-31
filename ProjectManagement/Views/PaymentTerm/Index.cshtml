@@ -1,0 +1,29 @@
+﻿@using PMISBLayer.Entities
+@model List<PaymentTerm>
+  <a class="btn btn-primary" asp-controller="PaymentTerm" asp-action="NewPaymentTerm">Create Payment Term</a>
+    <br />
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Payment Term Name</th>
+                <th>Project Name</th>
+                <th>Payment Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var paymentTerm in Model)
+                {
+                    <tr>
+                        <td>@paymentTerm.Name</td>
+                        <td>@paymentTerm.Deliverable.ProjectPhase.Project.Name</td>
+                        <td>@paymentTerm.Amount</td>
+                        <td><a class="btn btn-info" asp-controller="PaymentTerm" asp-action="EditPaymentTerm" asp-route-paymentTermId="@paymentTerm.Id">Edit</a></td>
+                        <td><a class="btn btn-danger" asp-controller="PaymentTerm" asp-action="DeletePaymentTerm" asp-route-paymentTermId="@paymentTerm.Id">Delete</a></td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

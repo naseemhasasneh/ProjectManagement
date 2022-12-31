@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace PMISBLayer.Entities
+{
+    public class PaymentTerm
+    {
+        public int Id { get; set; }
+     
+        public string Name { get; set; }
+       
+        public double Amount { get; set; }
+        public int DeliverableId { get; set; }
+        public Deliverable Deliverable { get; set; }
+        public List<InvoicePaymentTerm> InvoicePaymentTerms { get; set; }
+
+    }
+}

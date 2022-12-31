@@ -1,0 +1,63 @@
+﻿@using PMISBLayer.Entities
+@model ProjectPhase
+
+<script>
+  $( function() {
+      $("#StartDate").datepicker();
+      $("#EndDate").datepicker();
+  } );
+</script>
+
+<form asp-controller="ProjectPhase" asp-action="UpdateProjectPhase" method="post">
+    <div>
+        <input asp-for="Id" value="@Model.Id" style="display:none;" />
+        <label>Choose Project Name:</label>
+        <select asp-for="ProjectId" class="form-control">
+            @{
+                foreach (var project in (List<Project>)ViewBag.projects)
+                {
+                    if (Model.ProjectId == project.Id)
+                    {
+                        <option selected value="@project.Id">@project.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@project.Id">@project.Name</option>
+                    }
+
+                }
+            }
+        </select>
+        <span asp-validation-for="ProjectId" style="color: red;"></span>
+    </div>
+    <br />
+    <label>Choose project phase:</label>
+    <select asp-for="PhaseId" class="form-control">
+
+        @{
+            foreach (var phase in (List<Phase>)ViewBag.phases)
+            {
+                if (Model.PhaseId == phase.Id)
+                {
+                    <option selected value="@phase.Id">@phase.Name</option>
+                }
+                else
+                {
+                    <option value="@phase.Id">@phase.Name</option>
+                }
+
+            }
+        }
+    </select>
+    <span asp-validation-for="PhaseId" style="color: red;"></span>
+    <div class="form-group">
+        <label>Enter Start Date:</label>
+        <input id="StartDate" name="StartDate" value="@Model.StartDate" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Enter End Date:</label>
+        <input id="EndDate" name="EndDate"  value="@Model.EndDate"class="form-control">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Update</button>
+</form>

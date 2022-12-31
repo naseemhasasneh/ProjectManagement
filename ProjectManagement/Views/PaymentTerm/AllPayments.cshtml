@@ -1,0 +1,27 @@
+﻿@using PMISBLayer.Entities
+@model List<PaymentTerm>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>PaymentTerm Name</th>
+            <th>Amount</th>
+            <th>Deliverable Name</th>
+            <th>project Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var payment in Model)
+            {
+                <tr>
+                    <td>@payment.Name</td>
+                    <td>@payment.Amount</td>
+                    <td>@payment.Deliverable.Name</td>
+                    <td>@payment.Deliverable.ProjectPhase.Project.Name</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

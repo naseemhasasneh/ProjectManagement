@@ -1,0 +1,46 @@
+﻿@using PMISBLayer.Entities
+@model PMISBLayer.Entities.Deliverable
+
+<script>
+  $( function() {
+      $("#StartDate").datepicker();
+      $("#EndDate").datepicker();
+  } );
+</script>
+
+<form asp-controller="Deliverable" asp-action="CreateDeliverable" method="post">
+    <input name="projectId" value="@ViewBag.project.Id" style="display:none;" />
+    <div class="form-group">
+        <label>Enter deliverable Name:</label>
+        <input asp-for="Name" type="text" class="form-control">
+        <span asp-validation-for="Name" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter deliverable Description:</label>
+        <input asp-for="Description" type="text" class="form-control">
+        <span asp-validation-for="Description" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter Start Date:</label>
+        <input id="StartDate" name="StartDate" class="form-control">
+        <span  style="color: red;">@ViewBag.starterror</span>
+    </div>
+    <div class="form-group">
+        <label>Enter End Date:</label>
+        <input id="EndDate" name="EndDate" class="form-control">
+        <span style="color: red;">@ViewBag.enderror</span>
+    </div>
+    <br />
+    <label>Choose Your Phase:</label>
+    <select name="ProjectPhaseId" class="form-control">
+        @{
+            foreach (var projectPhase in (List<ProjectPhase>)ViewBag.project.ProjectPhase)
+            {
+                <option value="@projectPhase.Id">@projectPhase.Phase.Name</option>
+
+            }
+        }
+    </select>
+    <br />
+    <button type="submit" class="btn btn-success">Create</button>
+</form>

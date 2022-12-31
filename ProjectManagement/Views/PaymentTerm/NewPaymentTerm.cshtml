@@ -1,0 +1,26 @@
+﻿@using PMISBLayer.Entities
+@model PaymentTerm
+
+<form asp-controller="PaymentTerm" asp-action="CreatePaymentTerm" method="post">
+    <input name="DeliverableId" value="@Model.DeliverableId" style="display:none;" />
+    <div class="form-group">
+        <label>Enter PaymentTerm Name:</label>
+        <input asp-for="Name" type="text" class="form-control">
+        @{
+            if (Model.Name == null)
+            {
+                <span asp-validation-for="Name" style="color: red;"></span>
+            }
+        }
+
+    </div>
+    <div class="form-group">
+        <label>Enter Payment Amount:</label>
+        <input asp-for="Amount" type="number"  class="form-control">
+        <span asp-validation-for="Amount"  style="color: red;"></span>
+        <span style="color: red;">@ViewBag.AmountError</span>
+
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
