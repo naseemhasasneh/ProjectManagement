@@ -27,7 +27,6 @@
                     <td>@invoice.Id</td>
                     <td>@invoice.Title</td>
                     <td>@invoiceTotal</td>
-                    <td><a class="btn btn-secondary" asp-controller="Invoices" asp-action="EditInvoice" asp-route-invoiceId="@invoice.Id">Edit</a></td>
                     <td><a class="btn btn-danger" asp-controller="Invoices" asp-action="DeleteInvoice" asp-route-invoiceId="@invoice.Id">Delete</a></td>
                     <td><a class="btn btn-info" asp-controller="Invoices" asp-action="ViewInvoice" asp-route-invoiceId="@invoice.Id">View Invoice</a></td>
                 </tr>

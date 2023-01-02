@@ -1,4 +1,5 @@
-﻿using PMISBLayer.Repositories;
+﻿using Domain.CustomValidation;
+using PMISBLayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,7 +18,9 @@ namespace PMISBLayer.Entities
         [Required(ErrorMessage = "Phase Name is Required")]
         public int PhaseId { get; set; }
         public Phase Phase { get; set; }
+        [ProjectPhaseDates]
         public DateTime? StartDate { get; set; }
+        [ProjectPhaseDates]
         public DateTime? EndDate { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.CustomValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -12,9 +13,13 @@ namespace Domain.Dtos
         public int ProjectId { get; set; }
         [Required(ErrorMessage = "Phase Name is Required")]
         public int PhaseId { get; set; }
+        [ProjectPhaseDates]
         public DateTime? StartDate { get; set; }
+        [ProjectPhaseDates]
         public DateTime? EndDate { get; set; }
+        [ProjectPhaseDates]
         public DateTime? ProjectStartDate { get; set; }
+        [ProjectPhaseDates]
         public DateTime? ProjectEndDate { get; set; }
 
     }

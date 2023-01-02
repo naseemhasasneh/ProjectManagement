@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMISBLayer.Data;
 
 namespace PMISBLayer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230102145717_addClient")]
+    partial class addClient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -356,9 +358,6 @@ namespace PMISBLayer.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<double>("ContractAmount")
                         .HasColumnType("float");
 
@@ -397,8 +396,6 @@ namespace PMISBLayer.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProjectManagerId");
 
@@ -571,12 +568,6 @@ namespace PMISBLayer.Data.Migrations
 
             modelBuilder.Entity("PMISBLayer.Entities.Project", b =>
                 {
-                    b.HasOne("PMISBLayer.Entities.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PMISBLayer.Entities.ProjectManager", "ProjectManager")
                         .WithMany()
                         .HasForeignKey("ProjectManagerId");

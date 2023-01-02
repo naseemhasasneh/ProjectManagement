@@ -33,5 +33,7 @@ namespace PMISBLayer.Entities
         public List<ProjectPhase> ProjectPhase { get; set; }
         public string ProjectManagerId { get; set; }
         public ProjectManager ProjectManager { get; set; }
+        public int ClientId { get; set; }
+        public Client Client { get; set; }
     }
 }

@@ -21,7 +21,7 @@
                     <td>@project.Name</td>
                     <td>@project.ProjectType.Name</td>
                     <td>@project.ContractAmount</td>
-                    <td><a class="btn btn-success" target="_blank" asp-controller="Project" asp-action="ViewContract" asp-route-projectId="@project.Id">@project.ContractFileName</a></td>
+                    <td><a class="btn btn-info" target="_blank" asp-controller="Project" asp-action="ViewContract" asp-route-projectId="@project.Id">@project.ContractFileName</a></td>
                     <td><a class="btn btn-secondary" asp-controller="Project" asp-action="EditProject" asp-route-projectId="@project.Id" >Edit</a></td>
                     <td><a class="btn btn-danger" asp-controller="Project" asp-action="DeleteProject" asp-route-projectId="@project.Id">Delete</a></td>
                     <td><a class="btn btn-info" asp-controller="Deliverable" asp-action="Index" asp-route-projectId="@project.Id">Deliverables</a></td>

@@ -46,8 +46,8 @@ namespace ProjectManagement.Controllers
             var projectPhases = _projectPhaseRepo.GetProjectPhasesByP(projectId);
             foreach (var pp in projectPhases)
             {
-                if (AllPhases.Select(x => x.Id).Contains(pp.PhaseId))
-                {
+                if (AllPhases.Select(x => x.Id).Contains(pp.PhaseId))    // to check if the phase already created then remove it from All phases
+                {                                                        //this loop to show only avalible phases in drop down menu based on the project we selected.
                     AllPhases.Remove(pp.Phase);
                 }
             }
@@ -60,16 +60,6 @@ namespace ProjectManagement.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.projects = _projectRepo.GetManagerProjects(userId);
-                var AllPhases = _phaseRepo.GetAllPhases();
-                var projectPhases = _projectPhaseRepo.GetProjectPhasesByP(19);
-                foreach(var pp in projectPhases)
-                {
-                    if (AllPhases.Select(x => x.Id).Contains(pp.PhaseId))
-                    {
-                        AllPhases.Remove(pp.Phase);
-                    }
-                }
-                //ViewBag.phases = AllPhases;
                 return View();
             }
             catch(Exception ex)
@@ -80,13 +70,12 @@ namespace ProjectManagement.Controllers
             
         }
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
         public IActionResult CreateProjectPhase(CreateProjectPhaseDto projectPhase)
         {
             try
             {
-                
-               if (ModelState.IsValid)      
+                if (ModelState.IsValid)      
                 {
                     _projectPhaseRepo.CreateProjectPhase(projectPhase);
                     return RedirectToAction(nameof(Index));

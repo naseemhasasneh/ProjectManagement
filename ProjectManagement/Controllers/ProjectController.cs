@@ -18,12 +18,14 @@ namespace ProjectManagement.Controllers
         private readonly IProjectTypeRepository _projectTypeRepo;
         private readonly IProjectStatusRepository _projectStatusRepo;
         private readonly IPhaseRepository _phaseRepo;
-        public ProjectController(IProjectRepository repository, IProjectTypeRepository typeRepository, IProjectStatusRepository statusRepository, IPhaseRepository phaseRepository)
+        private readonly IClientRepository _clientRepo;
+        public ProjectController(IProjectRepository repository, IProjectTypeRepository typeRepository, IProjectStatusRepository statusRepository, IPhaseRepository phaseRepository, IClientRepository clientRepository)
         {
             _projectRepo = repository;
             _projectTypeRepo = typeRepository;
             _projectStatusRepo = statusRepository;
             _phaseRepo = phaseRepository;
+            _clientRepo = clientRepository;
         }
         public IActionResult Index()
         {
@@ -46,6 +48,7 @@ namespace ProjectManagement.Controllers
             {
                 ViewBag.projectTypes = _projectTypeRepo.GetProjectTypes();
                 ViewBag.projectStatus = _projectStatusRepo.GetProjectStatus();
+                ViewBag.clients = _clientRepo.GetClients();
                 return View();
             }
             catch(Exception ex)

@@ -42,7 +42,7 @@ namespace ProjectManagement
             services.AddScoped<IProjectPhaseRepository, ProjectPhaseRepository>();
             services.AddScoped<IPaymentTermRepository, PaymentTermRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
-
+            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();
             services.AddRazorPages();

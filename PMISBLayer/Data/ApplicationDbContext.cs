@@ -20,6 +20,7 @@ namespace PMISBLayer.Data
         public DbSet<Deliverable> Deliverables { get; set; }
         public DbSet<PaymentTerm> PaymentTerms { get; set; }
         public DbSet<ProjectManager> ProjectManagers { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

@@ -39,6 +39,7 @@ namespace PMISBLayer.Repositories
                 ProjectStatusId = projectDto.ProjectStatusId,
                 StartDate = projectDto.StartDate,
                 EndDate = projectDto.EndDate,
+                ClientId=projectDto.ClientId,
                 ContractAmount = projectDto.ContractAmount,
                 ContractFileName = projectDto.ContractFile.FileName,
                 ContractFileType = projectDto.ContractFile.ContentType,

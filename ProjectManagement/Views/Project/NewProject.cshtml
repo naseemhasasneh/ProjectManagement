@@ -34,6 +34,19 @@
         <input name="ContractFile" type="file" class="form-control">
         <span asp-validation-for="ContractFile" style="color: red;"></span>
     </div>
+    <div>
+        <label>Choose Your Client:</label>
+        <select asp-for="ClientId" class="form-control">
+            <option value="none" selected disabled hidden>Select An option</option>
+            @{
+                foreach (var client in (List<Client>)ViewBag.clients)
+                {
+                    <option value="@client.Id">@client.Name</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="ClientId" style="color: red;"></span>
+    </div>
 
     <div>
         <label>Choose Project Type:</label>

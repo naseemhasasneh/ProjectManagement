@@ -26,5 +26,6 @@ namespace Domain.Dtos
         public int ProjectStatusId { get; set; }
         [Required(ErrorMessage = "Project Type is Required")]
         public int ProjectTypeId { get; set; }
+        public int ClientId { get; set; }
     }
 }

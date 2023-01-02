@@ -75,21 +75,33 @@ namespace ProjectManagement.Controllers
            
         }
 
-        public IActionResult EditInvoice(int invoiceId)
+        //public IActionResult EditInvoice(int invoiceId)
+        //{
+        //    try
+        //    {
+        //        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //        ViewBag.projects = _projectRepo.GetManagerProjects(userId);
+        //        var invoice = _invoiceRepo.GetInvoice(invoiceId);
+        //        return View(invoice);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //        return View("Error");
+        //    }
+
+        //}
+        public IActionResult ViewInvoice(int invoiceId)
         {
             try
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                ViewBag.projects = _projectRepo.GetManagerProjects(userId);
-                var invoice = _invoiceRepo.GetInvoice(invoiceId);
-                return View(invoice);
+                return View();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return View("Error");
             }
-
         }
 
         public IActionResult DeleteInvoice(int invoiceId)

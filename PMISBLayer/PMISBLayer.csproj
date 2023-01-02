@@ -7,6 +7,12 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20221210124658_AddNewClasses.cs" />
     <Compile Remove="Data\Migrations\20221210124658_AddNewClasses.Designer.cs" />
+    <Compile Remove="Data\Migrations\20230102145009_AddClient.cs" />
+    <Compile Remove="Data\Migrations\20230102145009_AddClient.Designer.cs" />
+    <Compile Remove="Data\Migrations\20230102145341_AddClient.cs" />
+    <Compile Remove="Data\Migrations\20230102145341_AddClient.Designer.cs" />
+    <Compile Remove="Data\Migrations\20230102145936_AddClientInProject.cs" />
+    <Compile Remove="Data\Migrations\20230102145936_AddClientInProject.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

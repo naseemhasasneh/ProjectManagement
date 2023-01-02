@@ -1,5 +1,6 @@
 ﻿@using PMISBLayer.Entities
-@model ProjectPhase
+@using Domain.Dtos
+@model CreateProjectPhaseDto
 
 <script>
     $(function(){
@@ -38,7 +39,6 @@
                 foreach (var project in (List<Project>)ViewBag.projects)
                 {
                     <option value="@project.Id">@project.Name</option>
-                    
                 }
             }
         </select>
