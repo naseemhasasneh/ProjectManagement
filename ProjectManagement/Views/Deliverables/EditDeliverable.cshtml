@@ -8,7 +8,7 @@
     });
 </script>
 
-<form asp-controller="Deliverable" asp-action="UpdateDeliverable" method="post">
+<form asp-controller="Deliverables" asp-action="UpdateDeliverable" method="post">
     <input name="projectId" value="@Model.ProjectPhase.ProjectId" style="display:none;" />
     <input asp-for="Id" value="@Model.Id" style="display:none;" />
     <div class="form-group">

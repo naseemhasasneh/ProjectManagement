@@ -1,6 +1,6 @@
 ﻿@using PMISBLayer.Entities
 @model List<PaymentTerm>
-  <a class="btn btn-primary" asp-controller="PaymentTerm" asp-action="NewPaymentTerm">Create Payment Term</a>
+  <a class="btn btn-primary" asp-controller="PaymentTerms" asp-action="NewPaymentTerm">Create Payment Term</a>
     <br />
     <br />
     <table class="table table-striped">
@@ -19,8 +19,8 @@
                         <td>@paymentTerm.Name</td>
                         <td>@paymentTerm.Deliverable.ProjectPhase.Project.Name</td>
                         <td>@paymentTerm.Amount</td>
-                        <td><a class="btn btn-info" asp-controller="PaymentTerm" asp-action="EditPaymentTerm" asp-route-paymentTermId="@paymentTerm.Id">Edit</a></td>
-                        <td><a class="btn btn-danger" asp-controller="PaymentTerm" asp-action="DeletePaymentTerm" asp-route-paymentTermId="@paymentTerm.Id">Delete</a></td>
+                        <td><a class="btn btn-info" asp-controller="PaymentTerms" asp-action="EditPaymentTerm" asp-route-paymentTermId="@paymentTerm.Id">Edit</a></td>
+                        <td><a class="btn btn-danger" asp-controller="PaymentTerms" asp-action="DeletePaymentTerm" asp-route-paymentTermId="@paymentTerm.Id">Delete</a></td>
 
                     </tr>
                 }

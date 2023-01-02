@@ -7,7 +7,7 @@
         $("#EndDate").datepicker();
     });
 </script>
-<form asp-controller="Project" asp-action="UpdateProject" method="post" enctype="multipart/form-data">
+<form asp-controller="Projects" asp-action="UpdateProject" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <input name="Id" value="@Model.Id" style="display:none;" />
         <label>Enter Project Name:</label>

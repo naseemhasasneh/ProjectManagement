@@ -10,7 +10,7 @@
     function getPhases(projectid) {
         $("#phaseSelect").empty();
         $.ajax({
-            url: "/ProjectPhase/GetPhasessbyProjectId",
+            url: "/ProjectsPhases/GetPhasessbyProjectId",
             data: { projectId: projectid.value },
             contentType: "application/json",
             success: function (phases) {
@@ -30,7 +30,7 @@
     }
 </script>
 
-<form asp-controller="ProjectPhase" asp-action="CreateProjectPhase" method="post">
+<form asp-controller="ProjectsPhases" asp-action="CreateProjectPhase" method="post">
     <div>
         <label>Choose Project Name:</label>
         <select onchange="getPhases(this);" asp-for="ProjectId" class="form-control">

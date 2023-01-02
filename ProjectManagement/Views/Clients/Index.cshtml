@@ -1,0 +1,27 @@
+﻿@using PMISBLayer.Entities
+@model List<Client>
+
+<a class="btn btn-primary" asp-controller="Clients" asp-action="NewClient">Create New Client</a>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Client Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var client in Model)
+            {
+                <tr>
+                    <td>@client.Name</td>
+                    <td>@client.Email</td>
+                    <td><a class="btn btn-secondary" asp-controller="Clients" asp-action="EditClient" asp-route-clientId="@client.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-controller="Clients" asp-action="DeleteClient" asp-route-clientId="@client.Id">Delete</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

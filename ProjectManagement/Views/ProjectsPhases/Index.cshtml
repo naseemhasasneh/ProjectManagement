@@ -1,7 +1,7 @@
 ﻿@using PMISBLayer.Entities
 @model List<ProjectPhase>
 
-<a class="btn btn-primary" asp-controller="ProjectPhase" asp-action="NewProjectPhase">Create Project Phase</a>
+<a class="btn btn-primary" asp-controller="ProjectsPhases" asp-action="NewProjectPhase">Create Project Phase</a>
 <br />
 <br />
 <table class="table table-striped">
@@ -22,8 +22,8 @@
                     <td>@projectPhase.Phase.Name</td>
                     <td>@projectPhase.StartDate</td>
                     <td>@projectPhase.EndDate</td>
-                    <td><a class="btn btn-info" asp-controller="ProjectPhase" asp-action="EditProjectPhase" asp-route-projectPhaseId="@projectPhase.Id" >Edit</a></td>
-                    <td><a class="btn btn-danger" asp-controller="ProjectPhase" asp-action="DeleteProjectPhase" asp-route-projectPhaseId="@projectPhase.Id">Delete</a></td>
+                    <td><a class="btn btn-info" asp-controller="ProjectsPhases" asp-action="EditProjectPhase" asp-route-projectPhaseId="@projectPhase.Id" >Edit</a></td>
+                    <td><a class="btn btn-danger" asp-controller="ProjectsPhases" asp-action="DeleteProjectPhase" asp-route-projectPhaseId="@projectPhase.Id">Delete</a></td>
                 </tr>
             }
         }

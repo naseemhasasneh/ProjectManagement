@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 namespace ProjectManagement.Controllers
 {
     [Authorize]
-    public class PaymentTermController : Controller
+    public class PaymentTermsController : Controller
     {
         private readonly IPaymentTermRepository _paymentTermRepo;
         private readonly IDeliverableRepository _deliverableRepo;
 
-        public PaymentTermController(IPaymentTermRepository paymentTermRepository, IDeliverableRepository deliverableRepository)
+        public PaymentTermsController(IPaymentTermRepository paymentTermRepository, IDeliverableRepository deliverableRepository)
         {
             _paymentTermRepo = paymentTermRepository;
             _deliverableRepo = deliverableRepository;

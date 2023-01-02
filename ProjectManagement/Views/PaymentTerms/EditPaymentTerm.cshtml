@@ -1,7 +1,7 @@
 ﻿@using PMISBLayer.Entities
 @model PaymentTerm
 
-<form asp-controller="PaymentTerm" asp-action="UpdatePaymentTerm" method="post">
+<form asp-controller="PaymentTerms" asp-action="UpdatePaymentTerm" method="post">
     <input name="DeliverableId" value="@Model.DeliverableId" style="display:none;" />
     <input name="Id" value="@Model.Id" style="display:none;" />
     <div class="form-group">

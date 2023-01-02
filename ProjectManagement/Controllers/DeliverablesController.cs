@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 namespace ProjectManagement.Controllers
 {
     [Authorize]
-    public class DeliverableController : Controller
+    public class DeliverablesController : Controller
     {
         private readonly IDeliverableRepository _deliverableRepo;
         private readonly IPhaseRepository _phaseRepo;
         private readonly IProjectRepository _projectRepo;
         private readonly IProjectPhaseRepository _projectPhaseRepo;
 
-        public DeliverableController(IDeliverableRepository repository, IPhaseRepository phaseRepository, IProjectRepository projectRepository, IProjectPhaseRepository projectPhaseRepository)
+        public DeliverablesController(IDeliverableRepository repository, IPhaseRepository phaseRepository, IProjectRepository projectRepository, IProjectPhaseRepository projectPhaseRepository)
         {
             _deliverableRepo = repository;
             _phaseRepo = phaseRepository;
