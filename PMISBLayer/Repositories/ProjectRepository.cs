@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
 
 namespace PMISBLayer.Repositories
 {
@@ -18,11 +19,13 @@ namespace PMISBLayer.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IMapper _mapper;
 
-        public ProjectRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public ProjectRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _mapper = mapper;
         }
         public List<Project> GetAllProjects()
         {
@@ -31,21 +34,11 @@ namespace PMISBLayer.Repositories
         public void CreateProject(CreateProjectDto projectDto)
         {
             var userId= _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Project project = new Project()
-            {
-                Name = projectDto.Name,
-                Description = projectDto.Description,
-                ProjectTypeId = projectDto.ProjectTypeId,
-                ProjectStatusId = projectDto.ProjectStatusId,
-                StartDate = projectDto.StartDate,
-                EndDate = projectDto.EndDate,
-                ClientId=projectDto.ClientId,
-                ContractAmount = projectDto.ContractAmount,
-                ContractFileName = projectDto.ContractFile.FileName,
-                ContractFileType = projectDto.ContractFile.ContentType,
-                ContractFile = GetContractBytes(projectDto),
-                ProjectManagerId = userId
-        };
+            var project=_mapper.Map<Project>(projectDto);
+            project.ContractFileName = projectDto.ContractFile.FileName;
+            project.ContractFileType = projectDto.ContractFile.ContentType;
+            project.ContractFile = GetContractBytes(projectDto);
+            project.ProjectManagerId = userId;
             _context.Projects.Add(project);
             Save();
         }

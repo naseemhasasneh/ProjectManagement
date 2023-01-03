@@ -1,4 +1,5 @@
-﻿using Domain.Dtos;
+﻿using AutoMapper;
+using Domain.Dtos;
 using Microsoft.EntityFrameworkCore;
 using PMISBLayer.Data;
 using PMISBLayer.Entities;
@@ -12,21 +13,24 @@ namespace PMISBLayer.Repositories
     public class ProjectPhaseRepository : IProjectPhaseRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ProjectPhaseRepository(ApplicationDbContext dbContext)
+        public ProjectPhaseRepository(ApplicationDbContext dbContext,IMapper mapper)
         {
             _context = dbContext;
+            _mapper = mapper;
         }
 
         public void CreateProjectPhase(CreateProjectPhaseDto projectPhaseDto)
         {
-            ProjectPhase projectPhase = new ProjectPhase()
-            {
-                ProjectId = projectPhaseDto.ProjectId,
-                PhaseId = projectPhaseDto.PhaseId,
-                StartDate = projectPhaseDto.StartDate,
-                EndDate = projectPhaseDto.EndDate,
-            };
+            //ProjectPhase projectPhase = new ProjectPhase()
+            //{
+            //    ProjectId = projectPhaseDto.ProjectId,
+            //    PhaseId = projectPhaseDto.PhaseId,
+            //    StartDate = projectPhaseDto.StartDate,
+            //    EndDate = projectPhaseDto.EndDate,
+            //};
+            ProjectPhase projectPhase = _mapper.Map<ProjectPhase>(projectPhaseDto);
             _context.ProjectPhases.Add(projectPhase);
             _context.SaveChanges();
         }

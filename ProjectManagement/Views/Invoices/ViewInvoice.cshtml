@@ -10,6 +10,7 @@
             traditional: true,
             success: function (invoice) {
                 debugger;
+                var totalAmount = 0.0;
                 var clientName = invoice.project.client.name;
                 var clientEmail = invoice.project.client.email;
                 var projectName = invoice.project.name;
@@ -20,6 +21,7 @@
                 $("#clientEmail").append(clientEmail);
                 $("#projectName").append(projectName);
                 for (var invoicePayment of invoice.invoicePaymentTerms) {
+                    totalAmount += invoicePayment.paymentTerm.amount;
                     var paymentName = invoicePayment.paymentTerm.name;
                     var paymentAmount = invoicePayment.paymentTerm.amount;
                     var dName = invoicePayment.paymentTerm.deliverable.name;
@@ -29,6 +31,7 @@
                         "<div class='d-none d-sm-block col-2'>" + dName + "</div> </div >"
                         );
                 }
+                $("#totalAmount").append(totalAmount);
             },
             error: function () {
                 alert("something went wrong")
@@ -44,6 +47,7 @@
 <input asp-for="Id" value="@Model.Id" style="display:none;" />
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <style>
     body {
         margin-top: 20px;
@@ -193,14 +197,11 @@
 
         <div class="page-tools">
             <div class="action-buttons">
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
+                <a class="btn bg-white btn-light mx-1px text-95" href="javascript:window.print()" data-title="Print">
                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
                     Print
                 </a>
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
-                    <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
-                    Export
-                </a>
+               
             </div>
         </div>
     </div>
@@ -211,7 +212,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="text-center text-150">
-                            <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
+                            <i class="fas fa-file-invoice fa-2x text-success-m2 mr-1"></i>
                             <span class="text-default-d3">EngMan</span>
                         </div>
                     </div>
@@ -271,7 +272,7 @@
                                 Total Amount
                             </div>
                             <div class="col-5">
-                                <span class="text-150 text-success-d3 opacity-2">$2,475</span>
+                                <span id="totalAmount" class="text-150 text-success-d3 opacity-2"></span>
                             </div>
                         </div>
                     </div>

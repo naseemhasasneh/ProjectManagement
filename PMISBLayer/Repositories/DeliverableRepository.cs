@@ -1,4 +1,5 @@
-﻿using Domain.Dtos;
+﻿using AutoMapper;
+using Domain.Dtos;
 using Microsoft.EntityFrameworkCore;
 using PMISBLayer.Data;
 using PMISBLayer.Entities;
@@ -12,23 +13,25 @@ namespace PMISBLayer.Repositories
     public class DeliverableRepository : IDeliverableRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public DeliverableRepository(ApplicationDbContext dbContext)
+        public DeliverableRepository(ApplicationDbContext dbContext,IMapper mapper)
         {
             _context = dbContext;
+            _mapper = mapper;
         }
 
         public void CreateDeliverable(CreateDeliverableDto deliverableDto)
         {
-            var deliverable = new Deliverable()
-            {
-                Name = deliverableDto.Name,
-                Description = deliverableDto.Description,
-                StartDate = deliverableDto.StartDate,
-                EndDate = deliverableDto.EndDate,
-                ProjectPhaseId = deliverableDto.ProjectPhaseId
-            };
-
+            //var deliverable = new Deliverable()
+            //{
+            //    Name = deliverableDto.Name,
+            //    Description = deliverableDto.Description,
+            //    StartDate = deliverableDto.StartDate,
+            //    EndDate = deliverableDto.EndDate,
+            //    ProjectPhaseId = deliverableDto.ProjectPhaseId
+            //};
+            var deliverable = _mapper.Map<Deliverable>(deliverableDto);
             _context.Deliverables.Add(deliverable);
             _context.SaveChanges();
         }
