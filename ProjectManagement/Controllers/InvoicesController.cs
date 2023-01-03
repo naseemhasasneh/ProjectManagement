@@ -43,6 +43,11 @@ namespace ProjectManagement.Controllers
                 var payments = _paymentTermRepo.GetPaymentTermsByPId(projectId);
                 return new JsonResult(payments);
         }
+        public JsonResult GetInvoice(int invoiceId)
+        {
+            var invoice = _invoiceRepo.GetInvoice(invoiceId);
+            return new JsonResult(invoice);
+        }
         public IActionResult NewInvoice()
         {
             try
@@ -95,7 +100,8 @@ namespace ProjectManagement.Controllers
         {
             try
             {
-                return View();
+                var invoice = _invoiceRepo.GetInvoice(invoiceId);
+                return View(invoice);
             }
             catch (Exception ex)
             {

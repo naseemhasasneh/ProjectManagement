@@ -45,6 +45,8 @@ namespace ProjectManagement
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddRazorPages();
         }
 

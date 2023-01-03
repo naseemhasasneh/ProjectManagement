@@ -64,6 +64,7 @@ namespace PMISBLayer.Repositories
                 .ThenInclude(p=>p.Deliverable)
                 .ThenInclude(d=>d.ProjectPhase)
                 .ThenInclude(pp=>pp.Project)
+                .ThenInclude(p=>p.Client)
                 .SingleOrDefault(I => I.Id == invoiceId);
         }
 
