@@ -32,7 +32,8 @@ namespace PMISBLayer.Repositories
             Invoice invoice = new Invoice()
             {
                 Title = invoiceDto.Title,
-                Date = invoiceDto.Date
+                Date = invoiceDto.Date,
+                ProjectId=invoiceDto.ProjectId 
             };
             _context.Invoices.Add(invoice);
             _context.SaveChanges();
@@ -59,12 +60,11 @@ namespace PMISBLayer.Repositories
         public Invoice GetInvoice(int invoiceId)
         {
             return _context.Invoices
+                .Include(i=>i.Project)
+                .ThenInclude(p=>p.Client)
                 .Include(I=>I.InvoicePaymentTerms)
                 .ThenInclude(IP=>IP.PaymentTerm)
                 .ThenInclude(p=>p.Deliverable)
-                .ThenInclude(d=>d.ProjectPhase)
-                .ThenInclude(pp=>pp.Project)
-                .ThenInclude(p=>p.Client)
                 .SingleOrDefault(I => I.Id == invoiceId);
         }
 
