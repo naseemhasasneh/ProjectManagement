@@ -1,14 +1,22 @@
 ﻿@using PMISBLayer.Entities
 @model List<Client>
 
+    <script>
+        $(document).ready(function () {
+            $('#clients').DataTable();
+        });
+    </script>
+
 <a class="btn btn-primary" asp-controller="Clients" asp-action="NewClient">Create New Client</a>
 <br />
 <br />
-<table class="table table-striped">
+<table id="clients" class="table table-striped">
     <thead>
         <tr>
             <th>Client Name</th>
             <th>Client Email</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

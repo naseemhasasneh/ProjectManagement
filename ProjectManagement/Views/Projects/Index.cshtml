@@ -1,16 +1,27 @@
 ﻿@using PMISBLayer.Entities
 @model List<Project>
 
+<script>
+    $(document).ready(function () {
+        $('#projects').DataTable();
+    });
+</script>
+
 <a class="btn btn-primary" asp-controller="Projects" asp-action="NewProject">Create New Project</a>
 <br />
 <br />
-<table class="table table-striped">
+<table id="projects" class="table table-striped">
     <thead>
         <tr>
+            <th> Id</th>
             <th>Project Name</th>
             <th>Project Type</th>
             <th>Project Amount</th>
             <th>Project Contract</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
         </tr>
     </thead>
     <tbody>
@@ -18,11 +29,12 @@
             foreach (var project in Model)
             {
                 <tr>
+                    <td>@project.Id</td>
                     <td>@project.Name</td>
                     <td>@project.ProjectType.Name</td>
                     <td>@project.ContractAmount</td>
                     <td><a class="btn btn-info" target="_blank" asp-controller="Projects" asp-action="ViewContract" asp-route-projectId="@project.Id">@project.ContractFileName</a></td>
-                    <td><a class="btn btn-secondary" asp-controller="Projects" asp-action="EditProject" asp-route-projectId="@project.Id" >Edit</a></td>
+                    <td><a class="btn btn-secondary" asp-controller="Projects" asp-action="EditProject" asp-route-projectId="@project.Id">Edit</a></td>
                     <td><a class="btn btn-danger" asp-controller="Projects" asp-action="DeleteProject" asp-route-projectId="@project.Id">Delete</a></td>
                     <td><a class="btn btn-info" asp-controller="Deliverables" asp-action="Index" asp-route-projectId="@project.Id">Deliverables</a></td>
                 </tr>

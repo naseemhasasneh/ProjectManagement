@@ -1,16 +1,23 @@
 ﻿@using PMISBLayer.Entities
 @model List<ProjectPhase>
+    <script>
+    $(document).ready(function () {
+        $('#projectsPhases').DataTable();
+    });
+    </script>
 
 <a class="btn btn-primary" asp-controller="ProjectsPhases" asp-action="NewProjectPhase">Create Project Phase</a>
 <br />
 <br />
-<table class="table table-striped">
+<table id="projectsPhases" class="table table-striped">
     <thead>
         <tr>
             <th>project Name</th>
             <th>phase Name</th>
             <th>start Date</th>
             <th>End Date</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

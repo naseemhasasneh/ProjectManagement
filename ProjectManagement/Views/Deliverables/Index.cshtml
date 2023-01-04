@@ -1,17 +1,26 @@
 ﻿@using PMISBLayer.Entities
 @model Project
 
-<a class="btn btn-primary" asp-controller="Deliverables" asp-action="NewDeliverable" asp-route-projectId="@Model.Id" >Create Deliverable</a>
+<script>
+    $(document).ready(function () {
+        $('#Deliverables').DataTable();
+    });
+</script>
+
+<a class="btn btn-primary" asp-controller="Deliverables" asp-action="NewDeliverable" asp-route-projectId="@Model.Id">Create Deliverable</a>
 
 <br />
 <br />
-<table class="table table-striped">
+<table id="Deliverables" class="table table-striped">
     <thead>
         <tr>
             <th>Deliverable Name</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>phase Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -24,8 +33,8 @@
                     <td>@deliverable.EndDate</td>
                     <td>@deliverable.ProjectPhase.Phase.Name</td>
                     <td><a class="btn btn-info" asp-controller="Deliverables" asp-action="EditDeliverable" asp-route-deliverableId="@deliverable.Id">Edit</a></td>
-                    <td><a class="btn btn-danger" asp-controller="Deliverables" asp-action="DeleteDeliverable" asp-route-deliverableId="@deliverable.Id"  asp-route-projectId="@Model.Id">Delete</a></td>
-                    <td><a class="btn btn-info" asp-controller="PaymentTerms" asp-action="Index" asp-route-deliverableId="@deliverable.Id" >Payment Terms</a></td>
+                    <td><a class="btn btn-danger" asp-controller="Deliverables" asp-action="DeleteDeliverable" asp-route-deliverableId="@deliverable.Id" asp-route-projectId="@Model.Id">Delete</a></td>
+                    <td><a class="btn btn-info" asp-controller="PaymentTerms" asp-action="Index" asp-route-deliverableId="@deliverable.Id">Payment Terms</a></td>
 
                 </tr>
             }

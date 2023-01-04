@@ -1,15 +1,23 @@
 ﻿@using PMISBLayer.Entities
 @model List<Invoice>
 
+    <script>
+        $(document).ready(function () {
+            $('#AllInvoices').DataTable();
+        });
+    </script>
+
 <a class="btn btn-primary" asp-controller="Invoices" asp-action="NewInvoice">Create New Invoice</a>
 <br />
 <br />
-<table class="table table-striped">
+<table id="AllInvoices" class="table table-striped">
     <thead>
         <tr>
             <th>Invoice Id</th>
             <th>Invoice Name</th>
             <th>Invoice Amount</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

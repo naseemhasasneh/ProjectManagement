@@ -1,27 +1,33 @@
 ﻿@using PMISBLayer.Entities
 @model List<PaymentTerm>
-<br />
-<br />
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>PaymentTerm Name</th>
-            <th>Amount</th>
-            <th>Deliverable Name</th>
-            <th>project Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var payment in Model)
-            {
-                <tr>
-                    <td>@payment.Name</td>
-                    <td>@payment.Amount</td>
-                    <td>@payment.Deliverable.Name</td>
-                    <td>@payment.Deliverable.ProjectPhase.Project.Name</td>
-                </tr>
+
+    <script>
+        $(document).ready(function () {
+            $('#AllpaymentTerms').DataTable();
+        });
+    </script>
+    <br />
+    <br />
+    <table id="AllpaymentTerms" class="table table-striped">
+        <thead>
+            <tr>
+                <th>PaymentTerm Name</th>
+                <th>Amount</th>
+                <th>Deliverable Name</th>
+                <th>project Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var payment in Model)
+                {
+                    <tr>
+                        <td>@payment.Name</td>
+                        <td>@payment.Amount</td>
+                        <td>@payment.Deliverable.Name</td>
+                        <td>@payment.Deliverable.ProjectPhase.Project.Name</td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
