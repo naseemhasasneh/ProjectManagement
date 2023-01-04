@@ -48,8 +48,16 @@ namespace ProjectManagement.Controllers
         {
             try
             {
-                _clientRepo.CreateClient(clientDto);
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _clientRepo.CreateClient(clientDto);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return RedirectToAction(nameof(NewClient));
+                }
+                
             }
             catch (Exception ex)
             {
@@ -76,8 +84,16 @@ namespace ProjectManagement.Controllers
         {
             try
             {
-                _clientRepo.UpdateClient(client);
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _clientRepo.UpdateClient(client);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return RedirectToAction(nameof(NewClient));
+                }
+               
             }
             catch (Exception ex)
             {

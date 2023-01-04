@@ -9,13 +9,13 @@ namespace PMISBLayer.Entities
     public class Deliverable
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Deliverable Name is Required")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Deliverable Description is Required")]
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Phase Name is Required")]
         public int ProjectPhaseId { get; set; }
         public ProjectPhase ProjectPhase { get; set; }
     }

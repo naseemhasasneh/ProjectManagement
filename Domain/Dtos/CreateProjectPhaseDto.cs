@@ -17,9 +17,7 @@ namespace Domain.Dtos
         public DateTime? StartDate { get; set; }
         [ProjectPhaseDates]
         public DateTime? EndDate { get; set; }
-        [ProjectPhaseDates]
         public DateTime? ProjectStartDate { get; set; }
-        [ProjectPhaseDates]
         public DateTime? ProjectEndDate { get; set; }
 
     }

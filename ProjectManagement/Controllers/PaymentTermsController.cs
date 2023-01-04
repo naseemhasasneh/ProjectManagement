@@ -52,12 +52,7 @@ namespace ProjectManagement.Controllers
         {
             try
             {
-                if(TempData["amountError"] != null)
-                {
-                    ViewBag.AmountError = (string)TempData["amountError"];
-                }
                 paymentTerm.DeliverableId = Convert.ToInt32(TempData["deliverableId"]);
-                paymentTerm.Name = "";
                 return View(paymentTerm);
             }
             catch (Exception ex)
@@ -75,21 +70,16 @@ namespace ProjectManagement.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    if (IsValid(paymentTerm))
-                    {
-                        _paymentTermRepo.CreatePaymentTerm(paymentTerm);
-                        TempData["deliverableId"] = paymentTerm.DeliverableId;
-                        return RedirectToAction(nameof(Index));
-                    }
-                    else
-                    {
-                        TempData["deliverableId"] = paymentTerm.DeliverableId;
-                        TempData["amountError"] = "amount is not valid";
-                        return RedirectToAction(nameof(NewPaymentTerm),paymentTerm);
-                    }
+                    _paymentTermRepo.CreatePaymentTerm(paymentTerm);
+                    TempData["deliverableId"] = paymentTerm.DeliverableId;
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(NewPaymentTerm),paymentTerm);
 
+                else
+                {
+                    TempData["deliverableId"] = paymentTerm.DeliverableId;
+                    return RedirectToAction(nameof(NewPaymentTerm), paymentTerm);
+                }
             }
             catch (Exception ex)
             {
@@ -116,9 +106,18 @@ namespace ProjectManagement.Controllers
         {
             try
             {
-                _paymentTermRepo.UpdatePaymentTerm(paymentTerm);
-                TempData["deliverableId"] = paymentTerm.DeliverableId;
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _paymentTermRepo.UpdatePaymentTerm(paymentTerm);
+                    TempData["deliverableId"] = paymentTerm.DeliverableId;
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    TempData["deliverableId"] = paymentTerm.DeliverableId;
+                    return RedirectToAction(nameof(NewPaymentTerm), paymentTerm);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -141,14 +140,5 @@ namespace ProjectManagement.Controllers
             }
            
         }
-
-        public bool IsValid(PaymentTerm paymentTerm)
-        {
-            var d = _deliverableRepo.GetDeliverable(paymentTerm.DeliverableId);
-            var projectAmount = d.ProjectPhase.Project.ContractAmount;
-            return paymentTerm.Amount <= projectAmount;
-        }
-
-
     }
 }

@@ -7,9 +7,9 @@ namespace Domain.Dtos
 {
     public class CreateClientDto
     {
-        [Required]
+        [Required(ErrorMessage = "Client Name is Required")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Client Email is Required")]
         public string Email { get; set; }
     }
 }
