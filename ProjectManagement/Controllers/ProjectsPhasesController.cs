@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PMISBLayer.Entities;
 using PMISBLayer.Repositories;
+using PMISBLayer.validtionDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,14 @@ namespace ProjectManagement.Controllers
                     AllPhases.Remove(pp.Phase);
                 }
             }
-            return new JsonResult(AllPhases);
+            var project = _projectRepo.GetProject(projectId);    // for custom validition (i want to get dates of project)
+            ProjectPhaseDto projectPhaseDto = new ProjectPhaseDto()
+            {
+                Phases = AllPhases,
+                ProjectStartDate = project.StartDate,
+                ProjectEndDate = project.EndDate
+            };
+            return new JsonResult(projectPhaseDto);
         }
 
         public IActionResult NewProjectPhase(CreateProjectPhaseDto projectPhase)

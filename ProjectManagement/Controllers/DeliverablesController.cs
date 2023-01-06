@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DeliverablesController : Controller
     {
         private readonly IDeliverableRepository _deliverableRepo;
@@ -54,15 +54,21 @@ namespace ProjectManagement.Controllers
             return View(d);
         }
 
-        public IActionResult NewDeliverable(int projectId)
+        public JsonResult GetProjectPhase(int projectPhaseId)
+        {
+            var projectPhase = _projectPhaseRepo.GetProjectPhase(projectPhaseId);
+            return new JsonResult(projectPhase);
+        }
+
+        public IActionResult NewDeliverable(CreateDeliverableDto deliverableDto)
         {
             try
             {
                 if (TempData["ProjectId"] != null)
                 {
-                    projectId = (int)TempData["ProjectId"];
+                    deliverableDto.projectId = (int)TempData["ProjectId"];
                 }
-                ViewBag.project = _projectRepo.GetProject(projectId);
+                ViewBag.project = _projectRepo.GetProject(deliverableDto.projectId);
                 return View();
             }
             catch (Exception ex)
@@ -73,6 +79,7 @@ namespace ProjectManagement.Controllers
            
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CreateDeliverable(CreateDeliverableDto deliverableDto)
         {
             try
@@ -87,7 +94,7 @@ namespace ProjectManagement.Controllers
                 else
                 {
                     TempData["ProjectId"] = deliverableDto.projectId;
-                    return RedirectToAction(nameof(NewDeliverable));
+                    return RedirectToAction(nameof(NewDeliverable),deliverableDto);
                 }
             }
             catch (Exception ex)

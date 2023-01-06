@@ -13,9 +13,9 @@
             url: "/ProjectsPhases/GetPhasessbyProjectId",
             data: { projectId: projectid.value },
             contentType: "application/json",
-            success: function (phases) {
+            success: function (dto) {
 
-                for (var phase of phases) {
+                for (var phase of dto.phases) {
                     debugger;
                     $('#phaseSelect').append($('<option>', {
                         value: phase.id,
@@ -23,8 +23,8 @@
                     }));
                 }
 
-
-                
+                $("#ProjectStartDate").attr("value", dto.projectStartDate);
+                $("#ProjectEndDate").attr("value", dto.projectEndDate);
             },
             error: function () {
                 alert("something went wrong")
@@ -34,7 +34,8 @@
 </script>
 
 <form asp-controller="ProjectsPhases" asp-action="CreateProjectPhase" method="post">
-    <input style="display:none;" id="ProjectStartDate" />
+    <input name="ProjectStartDate" style="display:none;" id="ProjectStartDate" />
+    <input name="ProjectEndDate" style="display:none;" id="ProjectEndDate" />
     <div>
         <label>Choose Project Name:</label>
         <select onchange="getPhases(this);" asp-for="ProjectId" class="form-control">
@@ -65,6 +66,6 @@
         <input type="text" id="EndDate" name="EndDate" class="form-control">
         <span asp-validation-for="EndDate" style="color: red;"></span>
     </div>
-        <br />
-        <button type="submit" class="btn btn-success">Create</button>
+    <br />
+    <button type="submit" class="btn btn-success">Create</button>
 </form>

@@ -18,9 +18,9 @@ namespace PMISBLayer.Entities
         [Required(ErrorMessage = "Phase Name is Required")]
         public int PhaseId { get; set; }
         public Phase Phase { get; set; }
-        [ProjectPhaseDates]
+        [ProjectPhaseStartDate]
         public DateTime? StartDate { get; set; }
-        [ProjectPhaseDates]
+        [ProjectPhaseEndDate]
         public DateTime? EndDate { get; set; }
     }
 }

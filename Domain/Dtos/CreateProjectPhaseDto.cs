@@ -13,9 +13,9 @@ namespace Domain.Dtos
         public int ProjectId { get; set; }
         [Required(ErrorMessage = "Phase Name is Required")]
         public int PhaseId { get; set; }
-        [ProjectPhaseDates]
+        [ProjectPhaseStartDate]
         public DateTime? StartDate { get; set; }
-        [ProjectPhaseDates]
+        [ProjectPhaseEndDate]
         public DateTime? EndDate { get; set; }
         public DateTime? ProjectStartDate { get; set; }
         public DateTime? ProjectEndDate { get; set; }
