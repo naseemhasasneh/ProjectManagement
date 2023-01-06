@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class DeliverablesController : Controller
     {
         private readonly IDeliverableRepository _deliverableRepo;
@@ -94,6 +94,7 @@ namespace ProjectManagement.Controllers
                 else
                 {
                     TempData["ProjectId"] = deliverableDto.projectId;
+                    deliverableDto.ProjectPhaseId = 0; //when data is not valid , make the user choose his phase again.
                     return RedirectToAction(nameof(NewDeliverable),deliverableDto);
                 }
             }

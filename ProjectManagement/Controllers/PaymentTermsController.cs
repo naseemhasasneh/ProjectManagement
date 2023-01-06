@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Domain.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PMISBLayer.Entities;
 using PMISBLayer.Repositories;
@@ -48,11 +49,12 @@ namespace ProjectManagement.Controllers
             return View(p);
         }
 
-        public IActionResult NewPaymentTerm(PaymentTerm paymentTerm)
+        public IActionResult NewPaymentTerm(CreatePaymentDto paymentTerm)
         {
             try
             {
                 paymentTerm.DeliverableId = Convert.ToInt32(TempData["deliverableId"]);
+                ViewBag.deliverable = _deliverableRepo.GetDeliverable(paymentTerm.DeliverableId);
                 return View(paymentTerm);
             }
             catch (Exception ex)
@@ -63,7 +65,7 @@ namespace ProjectManagement.Controllers
            
         }
 
-        public IActionResult CreatePaymentTerm(PaymentTerm paymentTerm)
+        public IActionResult CreatePaymentTerm(CreatePaymentDto paymentTerm)
         {
             try
             {

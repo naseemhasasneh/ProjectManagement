@@ -1,4 +1,5 @@
-﻿using PMISBLayer.Entities;
+﻿using Domain.Dtos;
+using PMISBLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +11,7 @@ namespace PMISBLayer.Repositories
         List<PaymentTerm> GetPaymentTermsByDId(int deliverableId);
         List<PaymentTerm> GetPaymentTermsByPId(int projectId);
         List<PaymentTerm> GetAllPayments(string userId);
-        void CreatePaymentTerm(PaymentTerm paymentTerm);
+        void CreatePaymentTerm(CreatePaymentDto paymentTerm);
         PaymentTerm GetPaymentTerm(int paymentTermId);
         void UpdatePaymentTerm(PaymentTerm paymentTerm);
         void DeletePaymentTerm(int paymentTermId);

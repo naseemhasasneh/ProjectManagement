@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Dtos;
+using Microsoft.EntityFrameworkCore;
 using PMISBLayer.Data;
 using PMISBLayer.Entities;
 using System;
@@ -17,7 +18,7 @@ namespace PMISBLayer.Repositories
             _context = dbContext;
         }
 
-        public void CreatePaymentTerm(PaymentTerm paymentTerm)
+        public void CreatePaymentTerm(CreatePaymentDto paymentTerm)
         {
             PaymentTerm NewPaymentTerm = new PaymentTerm()
             {
