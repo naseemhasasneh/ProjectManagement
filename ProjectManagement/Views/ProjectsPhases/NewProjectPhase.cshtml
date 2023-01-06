@@ -22,6 +22,9 @@
                         text: phase.name
                     }));
                 }
+
+
+                
             },
             error: function () {
                 alert("something went wrong")
@@ -31,6 +34,7 @@
 </script>
 
 <form asp-controller="ProjectsPhases" asp-action="CreateProjectPhase" method="post">
+    <input style="display:none;" id="ProjectStartDate" />
     <div>
         <label>Choose Project Name:</label>
         <select onchange="getPhases(this);" asp-for="ProjectId" class="form-control">

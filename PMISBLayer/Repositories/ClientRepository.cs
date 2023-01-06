@@ -22,7 +22,9 @@ namespace PMISBLayer.Repositories
             Client Newclient = new Client()
             {
                 Name = clientDto.Name,
-                Email = clientDto.Email
+                Email = clientDto.Email,
+                Address=clientDto.Address,
+                PhoneNumber=clientDto.PhoneNumber
             };
             _context.Clients.Add(Newclient);
             _context.SaveChanges();
@@ -51,6 +53,8 @@ namespace PMISBLayer.Repositories
             var clientToUpdate = _context.Clients.Find(client.Id);
             clientToUpdate.Name = client.Name;
             clientToUpdate.Email = client.Email;
+            clientToUpdate.Address = client.Address;
+            clientToUpdate.PhoneNumber = client.PhoneNumber;
             _context.SaveChanges();
         }
     }
