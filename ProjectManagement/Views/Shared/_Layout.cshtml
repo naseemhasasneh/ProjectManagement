@@ -40,72 +40,77 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="~/assets/css/demo.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-
-
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-image="~/assets/img/sidebar-5.jpg">
-            <!--
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="sidebar" data-color="blue" data-image="~/assets/img/sidebar-5.jpg">
+                <!--
                 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
                 Tip 2: you can also add an image using data-image tag
             -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                       Eng House
-                    </a>
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                        <a href="#" class="simple-text">
+                            Eng House
+                        </a>
+                    </div>
+                    <ul class="nav">
+
+                        <li>
+                            <a class="nav-link" asp-controller="Projects" asp-action="Index">
+                                <i class="nc-icon nc-circle-09"></i>
+                                <p>Projects</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="ProjectsPhases" asp-action="Index">
+                                <i class="nc-icon nc-notes"></i>
+                                <p>ProjectsPhases</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="PaymentTerms" asp-action="AllPayments">
+                                <i class="nc-icon nc-paper-2"></i>
+                                <p>All paymentTerms</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="Deliverables" asp-action="AllDeliverables">
+                                <i class="nc-icon nc-atom"></i>
+                                <p>All Deliverables</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="Invoices" asp-action="Index">
+                                <i class="nc-icon nc-pin-3"></i>
+                                <p>Invoices</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="Clients" asp-action="Index">
+                                <i class="nc-icon nc-pin-3"></i>
+                                <p>Clients</p>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="nav">
-                    
-                    <li>
-                        <a class="nav-link" asp-controller="Projects" asp-action="Index">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>Projects</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-controller="ProjectsPhases" asp-action="Index">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>ProjectsPhases</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-controller="PaymentTerms" asp-action="AllPayments">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>All paymentTerms</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-controller="Deliverables" asp-action="AllDeliverables">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>All Deliverables</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-controller="Invoices" asp-action="Index">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Invoices</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-controller="Clients" asp-action="Index">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Clients</p>
-                        </a>
-                    </li>
-                </ul>
             </div>
-        </div>
+        }
+
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
 
                 <div class="container-fluid">
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index" > Dashboard </a>
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index"> Dashboard </a>
                     <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar burger-lines"></span>
                         <span class="navbar-toggler-bar burger-lines"></span>
@@ -113,7 +118,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
-                            
+
                             @*<li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <i class="nc-icon nc-planet"></i>
@@ -128,7 +133,7 @@
                                     <a class="dropdown-item" href="#">Another notification</a>
                                 </ul>
                             </li>*@
-                            
+
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             @*<li class="nav-item">
@@ -136,7 +141,7 @@
                                     <span class="no-icon">Account</span>
                                 </a>
                             </li>*@
-                             <partial name="_LoginPartial" />
+                            <partial name="_LoginPartial" />
                             @*<li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
@@ -161,9 +166,9 @@
             </nav>
             <!-- End Navbar -->
             @*<div class="container">*@
-                <main role="main" class="pb-3 p-3">
-                    @RenderBody()
-                </main>
+            <main role="main" class="pb-3 p-3">
+                @RenderBody()
+            </main>
             @*</div>*@
 
             <footer class="footer">
