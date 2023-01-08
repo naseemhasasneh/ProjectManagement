@@ -13,6 +13,10 @@ namespace PMISBLayer.Repositories
         List<Project> GetManagerProjects(string userId);
         Project GetProject(int projectId);
         List<Project> GetAllProjects();
+        int GetInProgressProjects();
+        int GetCompletedProjects();
+        int GetNotStartedProjects();
+        double GetAllProjectsAmounts();
         void CreateProject(CreateProjectDto projectDto);
         void UpdateProject(UpdateProjectDto projectDto);
         Byte[] GetContractBytes(CreateProjectDto projectDto);

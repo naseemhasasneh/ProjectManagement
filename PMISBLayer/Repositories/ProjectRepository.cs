@@ -94,12 +94,45 @@ namespace PMISBLayer.Repositories
             var project = _context.Projects.Find(projectDto.Id);
             project.Name = projectDto.Name;
             project.ContractAmount = projectDto.ContractAmount;
+            project.ProjectStatusId = projectDto.ProjectStatusId;
             project.StartDate = projectDto.StartDate;
             project.EndDate = projectDto.EndDate;
             project.ContractFileName = projectDto.ContractFile.FileName;
             project.ContractFileType = projectDto.ContractFile.ContentType;
             project.ContractFile = byteFile;
             Save();
+        }
+
+        public int GetInProgressProjects()
+        {
+            var ps = _context.Projects.Where(p => p.ProjectStatusId == 3).ToList();
+            var projectNumber=ps.Count();
+            return projectNumber;
+        }
+
+        public int GetCompletedProjects()
+        {
+            var ps = _context.Projects.Where(p => p.ProjectStatusId == 4).ToList();
+            var projectNumbers = ps.Count();
+            return projectNumbers;
+        }
+
+        public int GetNotStartedProjects()
+        {
+            var ps = _context.Projects.Where(p => p.ProjectStatusId == 2).ToList();
+            var projectNumbers = ps.Count();
+            return projectNumbers;
+        }
+
+        public double GetAllProjectsAmounts()
+        {
+            var projects = _context.Projects.ToList();
+            var total = 0.0;
+            foreach(var project in projects)
+            {
+                total += project.ContractAmount;
+            }
+            return total;
         }
     }
 }

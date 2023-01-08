@@ -1,45 +1,104 @@
-﻿<div class="container-fluid">
+﻿<style>
+    body {
+        margin-top: 20px;
+        background: #FAFAFA;
+    }
+
+    .order-card {
+        color: #fff;
+    }
+
+    .bg-c-blue {
+        background: linear-gradient(45deg,#4099ff,#73b4ff);
+    }
+
+    .bg-c-green {
+        background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+    }
+
+    .bg-c-yellow {
+        background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    }
+
+    .bg-c-pink {
+        background: linear-gradient(45deg,#FF5370,#ff869a);
+    }
+
+
+    .card {
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        border: none;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .card .card-block {
+            padding: 25px;
+        }
+
+    .order-card i {
+        font-size: 26px;
+    }
+
+    .f-left {
+        float: left;
+    }
+
+    .f-right {
+        float: right;
+    }
+</style>
+
+
+<div class="container-fluid">
+
     <div class="row">
-        <div class="col-md-4">
-            <div class="card ">
-                <div class="card-header ">
-                    <h4 class="card-title">Email Statistics</h4>
-                    <p class="card-category">Last Campaign Performance</p>
-                </div>
-                <div class="card-body ">
-                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                    <div class="legend">
-                        <i class="fa fa-circle text-info"></i> Open
-                        <i class="fa fa-circle text-danger"></i> Bounce
-                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="container  justify-content-center">
+            <div class="row">
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-blue order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Projects</h6>
+                            <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>In Progress</span></h2>
+                            <p class="m-b-0">Completed Orders<span class="f-right">@ViewBag.inProgress</span></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card ">
-                <div class="card-header ">
-                    <h4 class="card-title">Users Behavior</h4>
-                    <p class="card-category">24 Hours performance</p>
-                </div>
-                <div class="card-body ">
-                    <div id="chartHours" class="ct-chart"></div>
-                </div>
-                <div class="card-footer ">
-                    <div class="legend">
-                        <i class="fa fa-circle text-info"></i> Open
-                        <i class="fa fa-circle text-danger"></i> Click
-                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-history"></i> Updated 3 minutes ago
+
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-green order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Projects</h6>
+                            <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>Completed</span></h2>
+                            <p class="m-b-0">Completed Orders<span class="f-right">@ViewBag.completed</span></p>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-yellow order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Projects</h6>
+                            <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>Not Started</span></h2>
+                            <p class="m-b-0">Completed Orders<span class="f-right">@ViewBag.notStarted </span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xl-3 ">
+                    <div class="card bg-c-pink order-card p-1 ">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Projects</h6>
+                            <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>Total:</span></h2>
+                            <p class="m-b-0">Completed Orders<span class="f-right">@ViewBag.projectTotalAmounts</span></p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -65,7 +124,27 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-header ">
+                    <h4 class="card-title">Email Statistics</h4>
+                    <p class="card-category">Last Campaign Performance</p>
+                </div>
+                <div class="card-body ">
+                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                    <div class="legend">
+                        <i class="fa fa-circle text-info"></i> Open
+                        <i class="fa fa-circle text-danger"></i> Bounce
+                        <i class="fa fa-circle text-warning"></i> Unsubscribe
+                    </div>
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-6">
             <div class="card  card-tasks">
                 <div class="card-header ">
                     <h4 class="card-title">Tasks</h4>
@@ -194,15 +273,13 @@
                             </tbody>
                         </table>
                     </div>
+                </div>*@
+        @*<div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
                 </div>
-                <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-                    </div>
-                </div>
-            </div>
-        </div>
+            </div>*@
+
     </div>
 </div>
-          
