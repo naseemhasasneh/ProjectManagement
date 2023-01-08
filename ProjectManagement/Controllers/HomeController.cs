@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PMISBLayer.Repositories;
 using ProjectManagement.Models;
+using ProjectManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,11 +26,19 @@ namespace ProjectManagement.Controllers
 
         public IActionResult Index()
         { //refactor viewbag to viewModel
-            ViewBag.inProgress = _projectRepository.GetInProgressProjects();
-            ViewBag.completed = _projectRepository.GetCompletedProjects();
-            ViewBag.notStarted = _projectRepository.GetCompletedProjects();
-            ViewBag.projectTotalAmounts = _projectRepository.GetAllProjectsAmounts();
-            return View();
+            //ViewBag.inProgress = 
+            //ViewBag.completed = _projectRepository.GetCompletedProjects();
+            //ViewBag.notStarted = 
+            //ViewBag.projectTotalAmounts = 
+            var cardsModel = new CardsViewModel()
+            {
+                ProgressProjectsNumber = _projectRepository.GetInProgressProjects(),
+                CompletedProjectsNumber = _projectRepository.GetCompletedProjects(),
+                NotStartedProjectsNumber = _projectRepository.GetNotStartedProjects(),
+                TotalProjectsAmount = _projectRepository.GetAllProjectsAmounts()
+
+            };
+            return View(cardsModel);
         }
 
         public IActionResult Privacy()
