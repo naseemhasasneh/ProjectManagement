@@ -50,6 +50,7 @@ namespace ProjectManagement
             services.AddScoped<IPaymentTermRepository, PaymentTermRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IProjectManagerRepository, ProjectManagerRepository>();
             services.AddHttpContextAccessor();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllersWithViews();

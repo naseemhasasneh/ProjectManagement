@@ -1,0 +1,28 @@
+﻿@model Domain.Dtos.CreateManagerDto
+
+<form action="/ProjectManagers/CreateProjectManager">
+    <div class="form-group">
+        <label>Enter project manager Full Name:</label>
+        <input asp-for="FullName" type="text" class="form-control">
+        <span asp-validation-for="FullName" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter project manager Email:</label>
+        <input asp-for="Email" class="form-control">
+        <span asp-validation-for="Email" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Enter project manager password:</label>
+        <input asp-for="Password" class="form-control">
+        <span asp-validation-for="Password" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label>Confirm password:</label>
+        <input asp-for="ConfirmPassword" class="form-control">
+        <span asp-validation-for="ConfirmPassword" style="color: red;"></span>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+
