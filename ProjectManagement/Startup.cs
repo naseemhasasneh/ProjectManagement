@@ -35,7 +35,12 @@ namespace ProjectManagement
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<Person>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
             services.AddScoped<IProjectRepository,ProjectRepository>();
             services.AddScoped<IProjectTypeRepository,ProjectTypeRepository>();
             services.AddScoped<IProjectStatusRepository, ProjectStatusRepository>();

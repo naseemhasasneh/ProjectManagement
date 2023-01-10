@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "PROJECT MANAGER")]
     public class InvoicesController : Controller
     {
         private readonly IInvoiceRepository _invoiceRepo;

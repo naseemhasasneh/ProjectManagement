@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "PROJECT MANAGER")]
     public class ProjectsPhasesController : Controller
     {
         private readonly IProjectPhaseRepository _projectPhaseRepo;

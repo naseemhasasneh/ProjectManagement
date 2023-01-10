@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "PROJECT MANAGER")]
     public class PaymentTermsController : Controller
     {
         private readonly IPaymentTermRepository _paymentTermRepo;

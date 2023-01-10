@@ -25,11 +25,7 @@ namespace ProjectManagement.Controllers
         }
 
         public IActionResult Index()
-        { //refactor viewbag to viewModel
-            //ViewBag.inProgress = 
-            //ViewBag.completed = _projectRepository.GetCompletedProjects();
-            //ViewBag.notStarted = 
-            //ViewBag.projectTotalAmounts = 
+        { 
             var cardsModel = new CardsViewModel()
             {
                 ProgressProjectsNumber = _projectRepository.GetInProgressProjects(),

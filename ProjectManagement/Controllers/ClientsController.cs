@@ -1,4 +1,5 @@
 ﻿using Domain.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PMISBLayer.Entities;
 using PMISBLayer.Repositories;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     public class ClientsController : Controller
     {
         private readonly IClientRepository _clientRepo;
