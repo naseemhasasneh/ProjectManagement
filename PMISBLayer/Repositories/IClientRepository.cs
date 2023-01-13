@@ -9,6 +9,7 @@ namespace PMISBLayer.Repositories
     public interface IClientRepository
     {
         List<Client> GetClients();
+        int TotalClients();
         void CreateClient(CreateClientDto clientDto);
         Client GetClient(int clientId);
         void UpdateClient(Client client);

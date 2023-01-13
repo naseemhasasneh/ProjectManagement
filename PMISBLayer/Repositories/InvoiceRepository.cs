@@ -99,5 +99,11 @@ namespace PMISBLayer.Repositories
         {
              return _context.InvoicePaymentTerms.ToList();
         }
+
+        public int GetTotalInvoices()
+        {
+            var invoices = _context.Invoices.ToList();
+            return invoices.Count;
+        }
     }
 }

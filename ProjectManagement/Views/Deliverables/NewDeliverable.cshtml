@@ -1,11 +1,12 @@
-﻿@using PMISBLayer.Entities
-@model PMISBLayer.Entities.Deliverable
+﻿@using Domain.Dtos
+@using PMISBLayer.Entities
+@model CreateDeliverableDto
 
 <script>
-  $( function() {
-      $("#StartDate").datepicker();
-      $("#EndDate").datepicker();
-  });
+    $(function () {
+        $("#StartDate").datepicker();
+        $("#EndDate").datepicker();
+    });
     function getProjectPhase(projectPhaseid) {
         $.ajax({
             url: "/Deliverables/GetProjectPhase",
@@ -25,8 +26,8 @@
 
 <form asp-controller="Deliverables" asp-action="CreateDeliverable" method="post">
     <input name="projectId" value="@ViewBag.project.Id" style="display:none;" />
-    <input id="PPStartDate" name="PPStartDate"  style="display:none;" />
-    <input id="PPEndDate" name="PPEndDate"  style="display:none;" />
+    <input id="PPStartDate" name="PPStartDate" style="display:none;" />
+    <input id="PPEndDate" name="PPEndDate" style="display:none;" />
     <div class="form-group">
         <label>Enter deliverable Name:</label>
         <input asp-for="Name" type="text" class="form-control">
@@ -50,15 +51,18 @@
     <br />
     <label>Choose Your Phase:</label>
     <select onchange="getProjectPhase(this)" asp-for="ProjectPhaseId" class="form-control">
+
         <option value="none" selected disabled hidden>Select An option</option>
         @{
             foreach (var projectPhase in (List<ProjectPhase>)ViewBag.project.ProjectPhase)
             {
                 <option value="@projectPhase.Id">@projectPhase.Phase.Name</option>
 
+
             }
         }
     </select>
+    <span asp-validation-for="ProjectPhaseId" style="color: red;"></span>
     <br />
     <button type="submit" class="btn btn-success">Create</button>
 </form>

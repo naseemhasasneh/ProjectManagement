@@ -13,6 +13,7 @@ namespace PMISBLayer.Repositories
         List<Project> GetManagerProjects(string userId);
         Project GetProject(int projectId);
         List<Project> GetAllProjects();
+        int GetProjectsNumber();
         int GetInProgressProjects();
         int GetCompletedProjects();
         int GetNotStartedProjects();

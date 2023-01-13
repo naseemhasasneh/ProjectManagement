@@ -48,6 +48,12 @@ namespace PMISBLayer.Repositories
             return _context.Clients.ToList();
         }
 
+        public int TotalClients()
+        {
+            var clients = _context.Clients.ToList();
+            return clients.Count;
+        }
+
         public void UpdateClient(Client client)
         {
             var clientToUpdate = _context.Clients.Find(client.Id);

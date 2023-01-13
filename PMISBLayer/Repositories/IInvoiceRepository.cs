@@ -9,6 +9,7 @@ namespace PMISBLayer.Repositories
     public interface IInvoiceRepository
     {
         List<Invoice> GetInvoices();
+        int GetTotalInvoices();
         List<InvoicePaymentTerm> invoicePayments();
         List<Invoice> GetInvoices(string userId);
         void CreateInvoice(CreateInvoiceDto invoiceDto);

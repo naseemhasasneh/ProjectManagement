@@ -49,13 +49,13 @@ namespace ProjectManagement.Controllers
             return View(p);
         }
 
-        public IActionResult NewPaymentTerm(CreatePaymentDto paymentTerm)
+        public IActionResult NewPaymentTerm(int deliverableId)
         {
             try
             {
-                paymentTerm.DeliverableId = Convert.ToInt32(TempData["deliverableId"]);
-                ViewBag.deliverable = _deliverableRepo.GetDeliverable(paymentTerm.DeliverableId);
-                return View(paymentTerm);
+                deliverableId = Convert.ToInt32(TempData["deliverableId"]);
+                ViewBag.deliverable = _deliverableRepo.GetDeliverable(deliverableId);
+                return View();
             }
             catch (Exception ex)
             {
@@ -80,7 +80,7 @@ namespace ProjectManagement.Controllers
                 else
                 {
                     TempData["deliverableId"] = paymentTerm.DeliverableId;
-                    return RedirectToAction(nameof(NewPaymentTerm), paymentTerm);
+                    return View(nameof(NewPaymentTerm), paymentTerm);
                 }
             }
             catch (Exception ex)

@@ -60,15 +60,15 @@ namespace ProjectManagement.Controllers
             return new JsonResult(projectPhase);
         }
 
-        public IActionResult NewDeliverable(CreateDeliverableDto deliverableDto)
+        public IActionResult NewDeliverable(int projectId)
         {
             try
             {
                 if (TempData["ProjectId"] != null)
                 {
-                    deliverableDto.projectId = (int)TempData["ProjectId"];
+                    projectId = (int)TempData["ProjectId"];
                 }
-                ViewBag.project = _projectRepo.GetProject(deliverableDto.projectId);
+                ViewBag.project = _projectRepo.GetProject(projectId);
                 return View();
             }
             catch (Exception ex)
@@ -94,8 +94,9 @@ namespace ProjectManagement.Controllers
                 else
                 {
                     TempData["ProjectId"] = deliverableDto.projectId;
-                    deliverableDto.ProjectPhaseId = 0; //when data is not valid , make the user choose his phase again.
-                    return RedirectToAction(nameof(NewDeliverable),deliverableDto);
+                    ViewBag.project = _projectRepo.GetProject(deliverableDto.projectId);
+                    //deliverableDto.ProjectPhaseId = 0; //when data is not valid , make the user choose his phase again.
+                    return View(nameof(NewDeliverable),deliverableDto);
                 }
             }
             catch (Exception ex)

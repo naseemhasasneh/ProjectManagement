@@ -134,5 +134,11 @@ namespace PMISBLayer.Repositories
             }
             return total;
         }
+
+        public int GetProjectsNumber()
+        {
+            var projects = _context.Projects.ToList();
+            return projects.Count;
+        }
     }
 }

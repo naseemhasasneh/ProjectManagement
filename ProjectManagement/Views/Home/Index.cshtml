@@ -28,8 +28,8 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Projects</p>
-                            <h4 class="my-1 text-danger">@Model.ProgressProjectsNumber</h4>
-                            <p class="mb-0 font-13">In Progress</p>
+                            <h4 class="my-1 text-danger">@Model.ProjectsTotalNumber</h4>
+                            <p class="mb-0 font-13">In Total</p>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
                             <i class="fa fa-dollar"></i>
@@ -43,9 +43,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Projects</p>
-                            <h4 class="my-1 text-success">@Model.CompletedProjectsNumber</h4>
-                            <p class="mb-0 font-13">Completed</p>
+                            <p class="mb-0 text-secondary">Invoices</p>
+                            <h4 class="my-1 text-success">@Model.TotalInvoices</h4>
+                            <p class="mb-0 font-13">In Total</p>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
                             <i class="fa fa-bar-chart"></i>
@@ -59,9 +59,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Projects</p>
-                            <h4 class="my-1 text-warning">@Model.NotStartedProjectsNumber</h4>
-                            <p class="mb-0 font-13">Not started</p>
+                            <p class="mb-0 text-secondary">Clients</p>
+                            <h4 class="my-1 text-warning">@Model.ClientsNumber</h4>
+                            <p class="mb-0 font-13">In Total</p>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
                             <i class="fa fa-users"></i>
@@ -73,7 +73,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-lg-6">
         <div class="card ">
             <div class="card-header ">
                 <h4 class="card-title">2017 Sales</h4>
@@ -94,162 +94,64 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card ">
-            <div class="card-header ">
-                <h4 class="card-title">Email Statistics</h4>
-                <p class="card-category">Last Campaign Performance</p>
-            </div>
-            <div class="card-body ">
-                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Open
-                    <i class="fa fa-circle text-danger"></i> Bounce
-                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                </div>
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                </div>
+    <!-- pie -->
+<div class="col-lg-5 m-5" >
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="doughnutchart"></canvas>
             </div>
         </div>
     </div>
-    @*<div class="col-md-6">
-        <div class="card  card-tasks">
-            <div class="card-header ">
-                <h4 class="card-title">Tasks</h4>
-                <p class="card-category">Backend development</p>
-            </div>
-            <div class="card-body ">
-                <div class="table-full-width">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-sign"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="" checked>
-                                            <span class="form-check-sign"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="" checked>
-                                            <span class="form-check-sign"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                </td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" checked>
-                                            <span class="form-check-sign"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-sign"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Read "Following makes Medium better"</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="" disabled>
-                                            <span class="form-check-sign"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Unfollow 5 enemies from twitter</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>*@
-    @*<div class="card-footer ">
-            <hr>
-            <div class="stats">
-                <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-            </div>
-        </div>*@
-
-@*</div>*@
 </div>
+    
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+    var doughnutchartCanvas = document.getElementById("doughnutchart");
+    var numbers= [];
+    numbers.push(@Model.ProgressProjectsNumber);
+    numbers.push(@Model.NotStartedProjectsNumber);
+    numbers.push(@Model.CompletedProjectsNumber);
+    var doughnutChart = new Chart(doughnutchartCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: ["In Progress","Not Started","Completed"],
+        datasets: [{
+            data: numbers,
+            borderWidth: 0,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(157, 230, 41)',
+                'rgb(41, 224, 230)',
+                'rgb(255, 255, 0)'
+            ],
+            hoverBackgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(157, 230, 41)',
+                'rgb(41, 224, 230)',
+                'rgb(255, 255, 0)'
+            ]
+        }]
+    },
+        options: {
+            responsive:true,
+            legend: {
+                position: "bottom",
+                labels: {
+                    boxWidth: 11,
+                    fontColor: "#757681",
+                    fontSize: 11
+                }
+            }
+        }
+    });
+</script>
+
+

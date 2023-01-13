@@ -17,22 +17,28 @@ namespace ProjectManagement.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProjectRepository _projectRepository;
+        private readonly IInvoiceRepository _InvoiceRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public HomeController(ILogger<HomeController> logger, IProjectRepository repository)
+        public HomeController(ILogger<HomeController> logger, IProjectRepository repository, IInvoiceRepository invoiceRepository, IClientRepository clientRepository)
         {
             _logger = logger;
             _projectRepository = repository;
+            _InvoiceRepository = invoiceRepository;
+            _clientRepository = clientRepository;
         }
 
         public IActionResult Index()
-        { 
+        {
             var cardsModel = new CardsViewModel()
             {
                 ProgressProjectsNumber = _projectRepository.GetInProgressProjects(),
                 CompletedProjectsNumber = _projectRepository.GetCompletedProjects(),
                 NotStartedProjectsNumber = _projectRepository.GetNotStartedProjects(),
-                TotalProjectsAmount = _projectRepository.GetAllProjectsAmounts()
-
+                TotalProjectsAmount = _projectRepository.GetAllProjectsAmounts(),
+                ProjectsTotalNumber = _projectRepository.GetProjectsNumber(),
+                TotalInvoices = _InvoiceRepository.GetTotalInvoices(),
+                ClientsNumber = _clientRepository.TotalClients()
             };
             return View(cardsModel);
         }

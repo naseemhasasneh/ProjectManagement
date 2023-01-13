@@ -10,6 +10,9 @@ namespace ProjectManagement.ViewModels
         public int ProgressProjectsNumber { get; set; }
         public int NotStartedProjectsNumber { get; set; }
         public int CompletedProjectsNumber { get; set; }
+        public int ProjectsTotalNumber { get; set; }
+        public int ClientsNumber { get; set; }
+        public int TotalInvoices { get; set; }
         public double TotalProjectsAmount { get; set; }
     }
 }

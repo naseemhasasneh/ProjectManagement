@@ -1,9 +1,9 @@
 ﻿@using PMISBLayer.Entities
 @using Domain.Dtos
-@model CreatePaymentDto
+@model PaymentTerm
 
 <form asp-controller="PaymentTerms" asp-action="CreatePaymentTerm" method="post">
-    <input name="DeliverableId" value="@Model.DeliverableId" style="display:none;" />
+    <input name="DeliverableId" value="@ViewBag.deliverable.Id" style="display:none;" />
     <input name="ProjectAmount" value="@ViewBag.deliverable.ProjectPhase.Project.ContractAmount" style="display:none;" />
     <div class="form-group">
         <label>Enter PaymentTerm Name:</label>
