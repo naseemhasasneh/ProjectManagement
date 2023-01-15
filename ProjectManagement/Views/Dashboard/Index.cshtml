@@ -1,0 +1,157 @@
+﻿@model ProjectManagement.ViewModels.CardsViewModel
+
+<head>
+    <link rel="stylesheet" href="/css/CardsSheet.css">
+</head>
+
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total project payments</p>
+                            <h4 class="my-1 text-info">@Model.TotalProjectsAmount</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-danger">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Projects</p>
+                            <h4 class="my-1 text-danger">@Model.ProjectsTotalNumber</h4>
+                            <p class="mb-0 font-13">In Total</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
+                            <i class="fa fa-dollar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Invoices</p>
+                            <h4 class="my-1 text-success">@Model.TotalInvoices</h4>
+                            <p class="mb-0 font-13">In Total</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                            <i class="fa fa-bar-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Clients</p>
+                            <h4 class="my-1 text-warning">@Model.ClientsNumber</h4>
+                            <p class="mb-0 font-13">In Total</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+                            <i class="fa fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card ">
+            <div class="card-header ">
+                <h4 class="card-title">2017 Sales</h4>
+                <p class="card-category">All products including Taxes</p>
+            </div>
+            <div class="card-body ">
+                <div id="chartActivity" class="ct-chart"></div>
+            </div>
+            <div class="card-footer ">
+                <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Tesla Model S
+                    <i class="fa fa-circle text-danger"></i> BMW 5 Series
+                </div>
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-check"></i> Data information certified
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pie -->
+    <div class="col-lg-5 m-5">
+        <div class="card">
+            <div class="card-header">
+                <div class="chart">
+                    <canvas id="doughnutchart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+    var doughnutchartCanvas = document.getElementById("doughnutchart");
+    var numbers= [];
+    numbers.push(@Model.ProgressProjectsNumber);
+    numbers.push(@Model.NotStartedProjectsNumber);
+    numbers.push(@Model.CompletedProjectsNumber);
+    var doughnutChart = new Chart(doughnutchartCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: ["In Progress","Not Started","Completed"],
+        datasets: [{
+            data: numbers,
+            borderWidth: 0,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(157, 230, 41)',
+                'rgb(41, 224, 230)',
+                'rgb(255, 255, 0)'
+            ],
+            hoverBackgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(157, 230, 41)',
+                'rgb(41, 224, 230)',
+                'rgb(255, 255, 0)'
+            ]
+        }]
+    },
+        options: {
+            responsive:true,
+            legend: {
+                position: "bottom",
+                labels: {
+                    boxWidth: 11,
+                    fontColor: "#757681",
+                    fontSize: 11
+                }
+            }
+        }
+    });
+</script>
+
+

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -30,17 +30,8 @@ namespace ProjectManagement.Controllers
 
         public IActionResult Index()
         {
-            var cardsModel = new CardsViewModel()
-            {
-                ProgressProjectsNumber = _projectRepository.GetInProgressProjects(),
-                CompletedProjectsNumber = _projectRepository.GetCompletedProjects(),
-                NotStartedProjectsNumber = _projectRepository.GetNotStartedProjects(),
-                TotalProjectsAmount = _projectRepository.GetAllProjectsAmounts(),
-                ProjectsTotalNumber = _projectRepository.GetProjectsNumber(),
-                TotalInvoices = _InvoiceRepository.GetTotalInvoices(),
-                ClientsNumber = _clientRepository.TotalClients()
-            };
-            return View(cardsModel);
+           
+            return View();
         }
 
         public IActionResult Privacy()
