@@ -17,6 +17,8 @@ namespace PMISBLayer.Repositories
         int GetInProgressProjects();
         int GetCompletedProjects();
         int GetNotStartedProjects();
+        int GetCarfoorProjectsNumber();
+        int GetTajMallProjectsNumber();
         double GetAllProjectsAmounts();
         void CreateProject(CreateProjectDto projectDto);
         void UpdateProject(UpdateProjectDto projectDto);

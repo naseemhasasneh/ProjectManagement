@@ -140,5 +140,17 @@ namespace PMISBLayer.Repositories
             var projects = _context.Projects.ToList();
             return projects.Count;
         }
+
+        public int GetCarfoorProjectsNumber()
+        {
+            var projects = _context.Projects.Where(p => p.ClientId == 5).ToList();
+            return projects.Count;
+        }
+
+        public int GetTajMallProjectsNumber()
+        {
+            var projects = _context.Projects.Where(p => p.ClientId == 6).ToList();
+            return projects.Count;
+        }
     }
 }

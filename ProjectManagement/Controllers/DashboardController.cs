@@ -33,6 +33,9 @@ namespace ProjectManagement.Controllers
                 TotalInvoices = _InvoiceRepository.GetTotalInvoices(),
                 ClientsNumber = _clientRepository.TotalClients()
             };
+            ViewBag.carfoor = _projectRepository.GetCarfoorProjectsNumber();
+            ViewBag.tajMall = _projectRepository.GetTajMallProjectsNumber();
+
             return View(cardsModel);
         }
     }

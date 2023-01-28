@@ -73,27 +73,70 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6">
-        <div class="card ">
-            <div class="card-header ">
-                <h4 class="card-title">2017 Sales</h4>
-                <p class="card-category">All products including Taxes</p>
-            </div>
-            <div class="card-body ">
-                <div id="chartActivity" class="ct-chart"></div>
-            </div>
-            <div class="card-footer ">
-                <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Tesla Model S
-                    <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                </div>
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-check"></i> Data information certified
+    <div class="text-center col-lg-5 m-5">
+        <div class="card">
+            <div class="card-header">
+                <div class="chart">
+                    <canvas id="barchart"></canvas>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script>
+    var barCanvas = document.getElementById("barchart");
+        var carfoor = [];//these are all javascript array variables
+        var tajMall = [];//t
+        carfoor.push(@ViewBag.carfoor);
+        tajMall.push(@ViewBag.tajMall);
+
+        var carfoor = {
+            label: 'carfoor ',
+            data: carfoor ,
+            backgroundColor: 'rgb(54, 162, 235)',
+        borderWidth: 0,
+        lineTension: 0,
+        };
+        var tajMall = {
+            label: 'tajMall',
+            data: tajMall,
+            backgroundColor: 'rgb(157, 230, 41)',
+            borderWidth: 0,
+            lineTension: 0,
+        };
+   
+    var datasetvalues = {
+        labels: ["clients"],//x-axis label values
+        datasets: [carfoor, tajMall]//y-axis
+        };
+       
+    var chartOptions = {
+        scales: {
+            xAxes: [{
+                barPercentage: 1,//Percent (0-1) of the available width each bar should
+                categoryPercentage: 0.6,//Percent (0-1) of the available width each category
+            }],
+            yAxes: [{
+                barPercentage: 1,
+                categoryPercentage: 0.6,
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+        }
+    };
+    var barChart = new Chart(barCanvas, {
+        type: 'bar',
+        data: datasetvalues,
+        options: chartOptions
+    });
+    </script>
+
+
     <!-- pie -->
     <div class="col-lg-5 m-5">
         <div class="card">
