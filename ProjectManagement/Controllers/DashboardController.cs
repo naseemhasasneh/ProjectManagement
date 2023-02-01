@@ -23,7 +23,7 @@ namespace ProjectManagement.Controllers
         }
         public IActionResult Index()
         {
-            var cardsModel = new CardsViewModel()
+            var cardsModel = new DashboardViewModel()
             {
                 ProgressProjectsNumber = _projectRepository.GetInProgressProjects(),
                 CompletedProjectsNumber = _projectRepository.GetCompletedProjects(),
@@ -31,11 +31,11 @@ namespace ProjectManagement.Controllers
                 TotalProjectsAmount = _projectRepository.GetAllProjectsAmounts(),
                 ProjectsTotalNumber = _projectRepository.GetProjectsNumber(),
                 TotalInvoices = _InvoiceRepository.GetTotalInvoices(),
-                ClientsNumber = _clientRepository.TotalClients()
+                ClientsNumber = _clientRepository.TotalClients(),
+                carfoorProjectsNumber= _projectRepository.GetCarfoorProjectsNumber(),
+                tajMallProjectsNumber= _projectRepository.GetTajMallProjectsNumber(),
+                ZyadProjectsNumber= _projectRepository.GetZayadProjectsNumber()
             };
-            ViewBag.carfoor = _projectRepository.GetCarfoorProjectsNumber();
-            ViewBag.tajMall = _projectRepository.GetTajMallProjectsNumber();
-
             return View(cardsModel);
         }
     }

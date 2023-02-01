@@ -23,13 +23,6 @@ namespace PMISBLayer.Repositories
 
         public void CreateProjectPhase(CreateProjectPhaseDto projectPhaseDto)
         {
-            //ProjectPhase projectPhase = new ProjectPhase()
-            //{
-            //    ProjectId = projectPhaseDto.ProjectId,
-            //    PhaseId = projectPhaseDto.PhaseId,
-            //    StartDate = projectPhaseDto.StartDate,
-            //    EndDate = projectPhaseDto.EndDate,
-            //};
             ProjectPhase projectPhase = _mapper.Map<ProjectPhase>(projectPhaseDto);
             _context.ProjectPhases.Add(projectPhase);
             _context.SaveChanges();

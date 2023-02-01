@@ -32,7 +32,7 @@
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 </head>
 
-<body>
+<body style="background-color:white";>
     <div class="wrapper">
         @if (User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
         {
@@ -136,7 +136,7 @@
 
                 <div class="container-fluid">
                     <a asp-controller="Home" asp-action="Index"><img src="/Icons/engineering.png" style="width:50px;" /></a>
-                    
+
                     <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar burger-lines"></span>
                         <span class="navbar-toggler-bar burger-lines"></span>
@@ -153,12 +153,12 @@
             </nav>
             <!-- End Navbar -->
             @*<div class="container">*@
-            <main role="main" class="pb-3 p-3">
+            <main role="main" class="pb-3 p-3" style="background-color:white;">
                 @RenderBody()
             </main>
             @*</div>*@
 
-            <footer class="footer">
+            <footer class="footer" style="background-color:white;">
                 <div class="container-fluid">
                     <nav>
                         <ul class="footer-menu">

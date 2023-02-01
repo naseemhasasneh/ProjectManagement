@@ -71,12 +71,6 @@ namespace PMISBLayer.Repositories
                 p.Deliverable = _context.Deliverables.Find(p.DeliverableId);
             };
             return paymnets;
-            //return _context.PaymentTerms
-            //    //.Include(p=>p.InvoicePaymentTerms)
-            //    .Include(p => p.Deliverable)
-            //    .ThenInclude(d => d.ProjectPhase)
-            //    .Where(p =>p.Deliverable.ProjectPhase.ProjectId==projectId)
-            //    .ToList();
         }
 
         public void UpdatePaymentTerm(PaymentTerm paymentTerm)

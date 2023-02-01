@@ -152,5 +152,11 @@ namespace PMISBLayer.Repositories
             var projects = _context.Projects.Where(p => p.ClientId == 6).ToList();
             return projects.Count;
         }
+
+        public int GetZayadProjectsNumber()
+        {
+            var projects = _context.Projects.Where(p => p.ClientId == 7).ToList();
+            return projects.Count;
+        }
     }
 }

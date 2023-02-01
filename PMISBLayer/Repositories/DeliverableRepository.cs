@@ -23,14 +23,6 @@ namespace PMISBLayer.Repositories
 
         public void CreateDeliverable(CreateDeliverableDto deliverableDto)
         {
-            //var deliverable = new Deliverable()
-            //{
-            //    Name = deliverableDto.Name,
-            //    Description = deliverableDto.Description,
-            //    StartDate = deliverableDto.StartDate,
-            //    EndDate = deliverableDto.EndDate,
-            //    ProjectPhaseId = deliverableDto.ProjectPhaseId
-            //};
             var deliverable = _mapper.Map<Deliverable>(deliverableDto);
             _context.Deliverables.Add(deliverable);
             _context.SaveChanges();

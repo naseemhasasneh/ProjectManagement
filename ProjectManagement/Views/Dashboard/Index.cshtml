@@ -1,9 +1,8 @@
-﻿@model ProjectManagement.ViewModels.CardsViewModel
+﻿@model ProjectManagement.ViewModels.DashboardViewModel
 
 <head>
     <link rel="stylesheet" href="/css/CardsSheet.css">
 </head>
-
 <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
         <div class="col">
@@ -73,7 +72,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="text-center col-lg-5 m-5">
+    <div class="text-center col-lg-4 m-5">
         <div class="card">
             <div class="card-header">
                 <div class="chart">
@@ -91,9 +90,10 @@
     var barCanvas = document.getElementById("barchart");
         var carfoor = [];//these are all javascript array variables
         var tajMall = [];//t
-        carfoor.push(@ViewBag.carfoor);
-        tajMall.push(@ViewBag.tajMall);
-
+        var zyad = [];//t
+        carfoor.push(@Model.carfoorProjectsNumber);
+        tajMall.push(@Model.tajMallProjectsNumber);
+        zyad.push(@Model.ZyadProjectsNumber);
         var carfoor = {
             label: 'carfoor ',
             data: carfoor ,
@@ -108,12 +108,19 @@
             borderWidth: 0,
             lineTension: 0,
         };
-   
+        var Zyad = {
+            label: 'Zyad',
+            data: zyad,
+            backgroundColor: 'rgb(41, 224, 230)',
+            borderWidth: 0,
+            lineTension: 0,
+        };
+
     var datasetvalues = {
         labels: ["clients"],//x-axis label values
-        datasets: [carfoor, tajMall]//y-axis
+        datasets: [carfoor, tajMall,Zyad]//y-axis
         };
-       
+
     var chartOptions = {
         scales: {
             xAxes: [{
@@ -138,7 +145,7 @@
 
 
     <!-- pie -->
-    <div class="col-lg-5 m-5">
+    <div class="col-lg-4 m-5">
         <div class="card">
             <div class="card-header">
                 <div class="chart">

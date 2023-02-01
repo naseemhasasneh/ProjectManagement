@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PMISBLayer.Entities.Project">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAQABAggAAAFgAAAAAYkAAABAAAIAAAAAEAAAAU=</HashCode>
+      <FileName>Entities\Project.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectType" />
+      <Property Name="ProjectStatus" />
+      <Property Name="Client" />
+      <Property Name="ProjectManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PMISBLayer.Entities.Phase">
+    <Position X="10.25" Y="5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Phase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PMISBLayer.Entities.ProjectPhase">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAAAAACAAgBAAAAAAAAAAAAEAABAA=</HashCode>
+      <FileName>Entities\ProjectPhase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Project" />
+      <Property Name="Phase" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PMISBLayer.Entities.Deliverable">
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAYgAAAAAAAAAAAAAEAAEAA=</HashCode>
+      <FileName>Entities\Deliverable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectPhase" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PMISBLayer.Entities.PaymentTerm">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAASAAAAAAAAAEAARAAAAAAA=</HashCode>
+      <FileName>Entities\PaymentTerm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Deliverable" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PMISBLayer.Entities.Invoice">
+    <Position X="1.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAACAAABAAAAAABEAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Invoice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Project" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PMISBLayer.Entities.Client">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAQAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PMISBLayer.Entities.InvoicePaymentTerm">
+    <Position X="2" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAABAAAAAAAAAAABAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Entities\InvoicePaymentTerm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Invoice" />
+      <Property Name="PaymentTerm" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PMISBLayer.Entities.ProjectType">
+    <Position X="0.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProjectType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PMISBLayer.Entities.ProjectStatus">
+    <Position X="4" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProjectStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PMISBLayer.Entities.ProjectManager">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Entities\ProjectManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
